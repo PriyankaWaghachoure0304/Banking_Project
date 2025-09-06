@@ -129,8 +129,9 @@ public class CreditCardDao {
         CreditCard card = null;
         
         try (Connection con = db.getConnection();
-             PreparedStatement ps = con.prepareStatement("SELECT id,account_number,card_number,cardholder_name,cardholder_name,cvv,exp_month, exp_year,limit_amount  FROM credit_cards WHERE account_number=? LIMIT 1")) {
+             PreparedStatement ps = con.prepareStatement("SELECT id,account_number,card_number,cardholder_name,cvv,exp_month, exp_year,limit_amount  FROM credit_cards WHERE account_number=? LIMIT 1")) {
 
+        	System.out.println("ps"+ps);
             ps.setString(1, accountNumber);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
@@ -143,6 +144,7 @@ public class CreditCardDao {
                 card.setExpMonth(rs.getInt("exp_month"));
                 card.setExpYear(rs.getInt("exp_year"));
                 card.setLimitAmount(rs.getDouble(LIMIT));
+                System.out.println(card);
             }
         } catch (Exception e) {
             e.printStackTrace();

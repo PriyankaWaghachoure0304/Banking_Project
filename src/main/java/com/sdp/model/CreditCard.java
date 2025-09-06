@@ -33,4 +33,10 @@ public class CreditCard {
 
     public double getLimitAmount() { return limitAmount; }
     public void setLimitAmount(double limitAmount) { this.limitAmount = limitAmount; }
+	@Override
+	public String toString() {
+		return "CreditCard [id=" + id + ", accountNumber=" + accountNumber + ", cardNumber=" + cardNumber
+				+ ", cardholderName=" + cardholderName + ", cvv=" + cvv + ", expMonth=" + expMonth + ", expYear="
+				+ expYear + ", limitAmount=" + limitAmount + "]";
+	}
 }
