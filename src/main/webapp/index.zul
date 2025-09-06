@@ -3,4 +3,7 @@
 
 <label value="You are using: ${desktop.webApp.version}"/>
 
+
+<button>click</button>
+
 </window>
