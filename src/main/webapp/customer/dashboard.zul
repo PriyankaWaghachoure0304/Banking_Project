@@ -1,0 +1,118 @@
+<?page title="Loan Dashboard" contentType="text/html;charset=UTF-8"?>
+<?component name="Contact" macroURI="/WEB-INF/contact_us_macro.zul" ?>
+
+<zk>
+	<div width="100%"
+		 id="win"
+		apply="com.sdp.customer.Dashboard">
+
+		<vlayout id="vlayout" spacing="15px" style="padding:20px">
+<div style="display:flex; justify-content:center; align-items:center; flex-direction:column;">
+			<label id="welcome" style="font-size:40px; font-weight:bold; color:#004aad">
+				
+			</label>
+			<separator/>
+			<label id="toname" style="font-size:30px; font-weight:bold; color:#fc9608; ">
+				
+			</label>
+			</div>
+			<label id="l2"></label>
+			<separator />
+
+			<hlayout>
+				<label value="📄 Loan Status: "
+					style="font-weight:bold" />
+				<label id="loanStatus"
+					style="color:blue; font-weight:bold" />
+			</hlayout>
+
+			<hlayout>
+				<label value="📎 Actions:" style="font-weight:bold" />
+				<button label="View Sanction Letter" id="btnSanction"
+					visible="false"  />
+				<button label="Upload Documents" id="btnUpload"
+					visible="false" />
+				<button label="Accept Offer" id="btnAccept"
+					visible="false" />
+			</hlayout>
+
+			<separator />
+
+			<groupbox>
+				<caption label="💵 Loan Summary" />
+				<grid>
+					<columns>
+						<column label="Detail" />
+						<column label="Value" />
+					</columns>
+					<rows>
+						<row>
+							<label value="Loan Amount" />
+							<label id="lblAmount" />
+						</row>
+						<row>
+							<label value="Tenure (Months)" />
+							<label id="lblTenure" />
+						</row>
+						<row>
+							<label value="EMI" />
+							<label id="lblEMI" />
+						</row>
+						<row>
+							<label value="Loan Status" />
+							<label id="lblStatus" />
+						</row>
+					</rows>
+				</grid>
+			</groupbox>
+
+			<separator />
+
+			<groupbox>
+				<caption label="📅 EMI Schedule" />
+				<grid>
+					<columns>
+						<column label="Item" />
+						<column label="Details" />
+					</columns>
+					<rows>
+						<row>
+							<label value="Next Due Date" />
+							<label id="lblNextDue" />
+						</row>
+						<row>
+							<label value="Total Paid" />
+							<label id="lblTotalPaid" />
+						</row>
+						<row>
+							<label value="Remaining Balance" />
+							<label id="lblBalance" />
+						</row>
+					</rows>
+				</grid>
+			</groupbox>
+
+			<separator />
+
+			<hlayout>
+				<label value="📥 Download Documents:"
+					style="font-weight:bold" />
+				<button label="Sanction Letter"
+					id="btnDownloadSanction" />
+				<button label="Agreement" id="btnDownloadAgreement" />
+			</hlayout>
+
+			<separator />
+
+
+		</vlayout>
+		<zscript>
+	public void applyLoan() {
+		execution.sendRedirect("/Loan/account_opening.zul");
+	}
+	public void editProfile() {
+		execution.sendRedirect("/Loan/account_opening.zul");
+	}
+</zscript>
+	</div>
+</zk>

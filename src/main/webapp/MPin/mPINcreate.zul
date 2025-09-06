@@ -1,0 +1,65 @@
+<zk>
+	<style>
+		.form-container { display: flex; justify-content: center;
+		align-items: center; height: 100vh; background-color: #f0f4f8; }
+
+		.mpin-window { background-color: white; border-radius: 12px;
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); padding: 30px; width:
+		400px; }
+
+		.form-label { font-weight: bold; margin-top: 10px; color: #333;
+		}
+
+		.form-button { background-color: #1976d2; color: white; border:
+		none; padding: 10px 20px; border-radius: 6px; font-weight: bold;
+		cursor: pointer; }
+
+		.form-button:hover { background-color: #1565c0; }
+
+		.show1{ cursor: pointer; padding:0 0; background-color:white;
+		border:none; color:black; 
+		
+		transform: translateX(-28px) translateY(+5px);
+		}
+			.show2{ cursor: pointer; padding:0 0; background-color:white;
+		border:none; color:black; 
+		
+		transform: translateX(200px) translateY(-37px);
+		}
+	
+
+		.row-flex { display: flex; align-items: center;
+
+		}
+	</style>
+
+	<div sclass="form-container">
+		<window title="Set MPIN" border="normal" sclass="mpin-window"
+			apply="com.sdp.controller.MPinController">
+			<vlayout spacing="12px">
+				<label value="Enter New MPIN" sclass="form-label" />
+				<hlayout>
+					
+					<textbox id="mpin" type="password" maxlength="4"
+						constraint="no empty:MPIN is required" />
+					<button zclass="show1" iconSclass="z-icon-eye"
+						id="showPassword" tooltiptext="Show/Hide PIN" />
+				</hlayout>
+
+				<label value="Confirm MPIN" sclass="form-label" />
+				<textbox id="confirmMpin" type="password" maxlength="4"
+					constraint="no empty:Confirm MPIN is required" />
+					
+					<button zclass="show2" iconSclass="z-icon-eye"
+						id="showPassword2" tooltiptext="Show/Hide PIN" />
+
+				<label id="errorLbl" style="color:red;" visible="false" />
+
+				<separator height="10px" />
+
+				<button label="Set MPIN" id="setBtn"
+					sclass="form-button" />
+			</vlayout>
+		</window>
+	</div>
+</zk>

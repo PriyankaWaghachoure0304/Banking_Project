@@ -1,0 +1,158 @@
+<?page title="Manage Debit Card" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<style>
+		.center-screen {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 100vh;
+			background: #f0f2f5;
+		}
+
+		.manage-card-window {
+			max-width: 600px;
+			width: 100%;
+			background: #fff;
+			border-radius: 12px;
+			box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+			padding: 25px;
+			font-family: 'Segoe UI', sans-serif;
+		}
+
+		.card-box {
+			background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); /* Visa card-like gradient */
+			border-radius: 16px;
+			padding: 20px;
+			color: white;
+			height:250px;
+			width: 100%;
+			position: relative;
+			box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
+		}
+
+		.card-header {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			margin-bottom: 10px;
+		}
+
+		.card-chip {
+			width: 50px;
+			height: 35px;
+			background-image: url('/Images/chip.png'); /* Add chip image */
+			background-size: cover;
+			border-radius: 6px;
+		}
+
+		.card-number {
+			font-size: 20px;
+			letter-spacing: 2px;
+			font-weight: bold;
+			margin: 15px 0;
+		}
+
+		.card-details-row {
+			display: flex;
+			justify-content: space-between;
+			font-size: 14px;
+			margin-top: 45px;
+		}
+
+		.card-holder {
+			margin-top: 15px;
+			font-size: 15px;
+			font-weight: 500;
+		}
+
+		.visa-logo {
+			position: absolute;
+			right: 20px;
+			margin-top: 30px;
+			width: 60px;
+			height: auto;
+		}
+
+		.card-actions {
+			display: flex;
+			justify-content: space-between;
+			margin-top: 50px;
+			gap: 10px;
+			
+		}
+
+		.option-row {
+			
+			display: flex;
+			align-items: center;
+			padding: 10px 0;
+			border-bottom: 1px solid #ccc;
+		}
+		.option-row image {
+			margin-right: 15px;
+		}
+		.option-row label {
+			font-size: 14px;
+			color: #333;
+		}
+		
+		.lcursor{
+			cursor:pointer;
+		}
+	</style>
+
+	<div class="center-screen">
+		<div  width="100%" class="manage-card-window" apply="com.sdp.cards.ManageDebitCard">
+			<vlayout width="100%" spacing="20px">
+				<label id="accno" style="font-weight: bold; font-size: 14px;" />
+
+				<!-- Visa Style Card -->
+				<div class="card-box">
+					<div class="card-header">
+						<label value="Kolkata Bank" style="font-size:16px; font-weight:bold;" />
+						<div class="card-chip" />
+					</div>
+
+					<label value="Debit Card Number" style="font-size:12px;" />
+					<label id="cardNumber" class="card-number" />
+
+					<div class="card-details-row">
+						<label id="valid" value="VALID THRU: 12/27" />
+						<label id="cvv" value="CVV: ***" />
+					</div>
+
+					<label id="name" class="card-holder" value="Card Holder Name" />
+
+					<!-- Visa Logo -->
+					<image src="/Images/visa.jpg" class="visa-logo" />
+
+					<!-- Toggle Actions -->
+					<hlayout class="card-actions">
+						<hlayout>
+							<label value="Card Details:" />
+							<checkbox id="showCard" label="Show" />
+						</hlayout>
+						<hlayout>
+							<label value="CVV:" />
+							<checkbox id="showCVV" label="Show" />
+						</hlayout>
+					</hlayout>
+				</div>
+
+				<!-- Card Options -->
+				<vlayout width="100%" spacing="10px">
+					
+					<hlayout class="option-row">
+						<image src="/Images/managecard.png" width="30px" height="30px" />
+						<label sclass="lcursor"  id="payCard" value="Pay With Card" />
+					</hlayout>
+					<hlayout class="option-row">
+						<image src="/Images/pindebitcard.png" width="30px" height="30px" />
+						<label sclass="lcursor" id="pinset" value="Pin Generation" />
+					</hlayout>
+					
+				</vlayout>
+			</vlayout>
+		</div>
+	</div>
+</zk>

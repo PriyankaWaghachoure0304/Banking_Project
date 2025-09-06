@@ -1,0 +1,42 @@
+<?page title="Scanner" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<style>
+		
+
+		/* Window container styling */
+		.window-scanner {
+			background-color: #ffffff;
+			border-radius: 20px;
+			box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+			padding: 30px;
+			width: 400px;
+			margin: 100px auto;
+		}
+
+		/* Heading */
+		.window-scanner .z-window-title {
+			color: #2c3e50;
+			font-size: 24px;
+			font-weight: bold;
+			text-align: center;
+		}
+
+		/* Barcode scanner box */
+		.codescanner {
+			border: 2px dashed #4a90e2;
+			border-radius: 16px;
+			padding: 20px;
+			background-color: #f0f4f8;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+	</style>
+
+	<div sclass="window-scanner" apply="com.sdp.qr.Scanner">
+		<vlayout  spacing="20px">
+			<label value="Scan a QR Code using your camera" style="color:#555;font-size:16px;" />
+			<barcodescanner id="codescanner" sclass="codescanner" type="qr" width="300px" height="300px"/>
+		</vlayout>
+	</div>
+</zk>

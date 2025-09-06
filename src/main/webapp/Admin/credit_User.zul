@@ -1,0 +1,78 @@
+<?page title="Credit Card Users" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<style>
+		<!-- .z-listbox {
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            background-color: #ffffff;
+        }
+        
+        .z-listbox-header {
+            background-color: #0f1c3f;
+            color: white;
+            font-weight: 600;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+        
+        .z-listitem {
+            background-color: #ffffff;
+            transition: background-color 0.2s ease;
+        }
+        
+        .z-listitem:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .z-listcell {
+            padding: 12px;
+        }
+        
+        .z-listbox-body .z-listitem:nth-child(even) .z-listcell {
+            background-color: #f8f9fa;
+        } -->
+	</style>
+	<div apply="com.sdp.cards.CreditUser" width="100%" height="100%">
+	    <label value="Credit Card Applications" style="font-size: 24px; font-weight: 600; color: #1a2c53; margin-bottom: 20px; display: block;"/>
+		<listbox id="ll1" mold="paging" pageSize="10" >
+			<listhead>
+				<listheader label="Account Number" align="center"/>
+				<listheader label="Name" align="center"/>
+				<listheader label="Limit Amount" align="center"/>
+				<listheader label="Applied/Issued Date" align="center"/>
+				<!-- <listheader label="Card Number" align="center"/> -->
+				<listheader label="Action" align="center"/>
+			</listhead>
+			<template name="model">
+				<listitem>
+					<listcell label="${each.accountNumber}" />
+					<listcell label="${each.fullName}" />
+					<listcell label="${each.requestedLimit}" />
+					<listcell label="${each.createdAt}" />
+					<!-- <listcell label="${each.cardNumber}" /> -->
+					<listcell>
+						<hbox hflex="1" pack="center" align="center">
+								<button label="Approve" sclass="myButton">
+
+									<custom-attributes
+		
+										appId="${each.accountNumber}" />
+		
+								</button>
+		
+								<button label="Reject" sclass="myButton">
+		
+									<custom-attributes
+		
+										appId="${each.accountNumber}" />
+		
+								</button>
+							
+						</hbox>
+					</listcell>
+				</listitem>
+			</template>
+		</listbox>
+	</div>
+</zk>

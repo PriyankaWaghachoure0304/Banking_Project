@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="LoanAgreementLetter" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="193f50c0-31c7-4011-b0ff-bbc5dda89441">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="62"/>
+	<parameter name="logoPath" class="java.lang.String"/>
+	<parameter name="date" class="java.util.Date"/>
+	<parameter name="name" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="162" splitType="Stretch">
+			<image>
+				<reportElement uuid="9a61b3ba-ef63-44ce-8907-0998ebf57992" x="0" y="2" width="174" height="102"/>
+				<imageExpression><![CDATA[$P{logoPath}]]></imageExpression>
+			</image>
+			<elementGroup>
+				<staticText>
+					<reportElement uuid="97d9f17e-ef8e-4982-a75b-0c30f6b1938a" x="281" y="20" width="101" height="30"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Bank Address]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="73c6be97-bca3-4104-92ad-51247a306d05" x="281" y="2" width="100" height="18"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Bank]]></text>
+				</staticText>
+			</elementGroup>
+			<staticText>
+				<reportElement uuid="da1c63c1-b6b2-4990-b469-3bf52a12d8e3" x="381" y="2" width="12" height="18"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="da1c63c1-b6b2-4990-b469-3bf52a12d8e3" x="381" y="20" width="12" height="30"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="63f47c89-0fad-462f-800c-d40f3f5ef3be" x="281" y="48" width="100" height="18"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[IFSCE Code]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="da1c63c1-b6b2-4990-b469-3bf52a12d8e3" x="382" y="50" width="12" height="18"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="2aa43fa5-b2af-412a-80f7-de0aea9ca6c1" x="393" y="2" width="162" height="18"/>
+				<textElement/>
+				<text><![CDATA[SDP Horizon Bank]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="58049ab6-f470-4659-b2aa-b82a77205e75" x="393" y="20" width="162" height="30"/>
+				<textElement/>
+				<text><![CDATA[Kalkazi, Near Neheru Enclive Metro, Delhi, 100019]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="494f023e-04d2-4120-ab07-79b22f19d182" x="394" y="50" width="162" height="20"/>
+				<textElement/>
+				<text><![CDATA[SDPHOB00012S]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="7cabefd3-ea0f-4526-8930-7f467b5fa49b" x="0" y="104" width="555" height="38" forecolor="#052B4B"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Serif" size="24" isBold="true" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Loan Agreement Letter]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="95" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="68cb1861-5fd4-4dec-ae58-1c0c77af4998" x="0" y="0" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Date: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="50e9106d-13a8-427e-bbc3-9f568dfe8277" x="31" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{date}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="72ed638a-c64e-427e-b2dc-1fd405d64ad0" x="0" y="20" width="100" height="72"/>
+				<textElement>
+					<font fontName="Serif"/>
+				</textElement>
+				<text><![CDATA[Mr Bean
+Senior Loan Officer      Kalkaji, Near Neharu Enclave Metro, Delhi, 100019]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="300" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="60191cdf-52c4-4c1d-8c8a-2aa084b21b62" x="0" y="0" width="79" height="20"/>
+				<textElement>
+					<font fontName="Serif"/>
+				</textElement>
+				<text><![CDATA[Dear Mr Bean,]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b71e5799-0da6-445a-bf24-51d2a603aa64" x="0" y="20" width="555" height="173"/>
+				<textElement>
+					<font fontName="Serif" isBold="false"/>
+				</textElement>
+				<text><![CDATA[I am writing to confirm our agreement regarding the loan has been approved  by SDP Horizon Bank.After reviewing the terms and conditions of the loan, we are prepared to proceed with the formalization of this loan agreement.
+
+This agreement will outline the specific terms, including the interest rate, repayment schedule, and any other relevant conditions that both parties will adhere to. As the agreement is legally binding, all details must be accurately documented and agreed upon by both parties.
+
+Please let us know if there are any further steps required from our side to complete the loan agreement. We are ready to provide any necessary documentation or to discuss any details that may need clarification.
+
+We appreciate your support and look forward to finalizing this process. Should you need any additional information or wish to discuss any aspect of the agreement further, please feel free to contact me. Thank you for your attention to this matter.
+
+,]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4fb78a50-fe00-48e8-9e8c-1dc2788d772b" x="0" y="210" width="100" height="20"/>
+				<textElement>
+					<font fontName="Serif" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sincerely,]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="2d99cf10-450c-449b-97f3-792e985cb843" x="0" y="245" width="100" height="1"/>
+			</line>
+			<textField>
+				<reportElement uuid="d0076040-eaae-46d3-a384-33d9ad58c354" x="0" y="246" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{name}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

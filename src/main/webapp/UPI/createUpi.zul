@@ -1,0 +1,90 @@
+<?page title="Generate UPI ID" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<style>
+		.custom-window {
+			<!-- max-width: 500px;
+			margin: 40px auto;
+			padding: 30px;
+			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+			border-radius: 10px;
+			background-color: #f9f9f9;
+			font-family: 'Segoe UI', sans-serif; -->
+			
+			background-color: #ffffff;
+			border-radius: 20px;
+			box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+			padding: 30px;
+			width: 400px;
+			margin: 100px auto;
+			
+		}
+		.custom-label {
+			min-width: 250px;
+			font-weight: bold;
+			font-size: 14px;
+			color: #333;
+		}
+		.custom-input {
+			width: 100%;
+			padding: 8px;
+			border: 1px solid #ccc;
+			border-radius: 6px;
+			font-size: 14px;
+		}
+		.custom-button {
+			margin-top: 20px;
+			width: 100%;
+			background-color: #007bff;
+			color: white;
+			border: none;
+			padding: 10px;
+			font-size: 16px;
+			border-radius: 6px;
+			cursor: pointer;
+			transition: background-color 0.3s ease;
+		}
+		.custom-button:hover {
+			background-color: #0056b3;
+		}
+		.result-section {
+			margin-top: 25px;
+			padding: 15px;
+			background-color: #e6f7ff;
+			border: 1px solid #b3d8ff;
+			border-radius: 6px;
+			color: #004085;
+			font-weight: bold;
+			display: none;
+		}
+		@media (max-width: 600px) {
+			.custom-label {
+				min-width: 100%;
+			}
+			hbox {
+				flex-direction: column;
+			}
+		}
+	</style>
+
+	<div sclass="custom-window" apply="com.sdp.upi.GenerateUpi">
+		<vbox spacing="15px">
+			<hbox>
+				<label value="Enter Last 6 Digit Debit Card Number :" sclass="custom-label"/>
+				<inputgroup>
+					<textbox id="cardnum" placeholder="XX XXXX" sclass="custom-input" />
+				</inputgroup>
+			</hbox>
+
+			<hbox>
+				<label value="Enter Card Pin :" sclass="custom-label"/>
+				<intbox id="cardpin" sclass="custom-input"/>
+			</hbox>
+
+			<button id="generate" label="Generate UPI ID" sclass="custom-button"/>
+
+			<div id="upiResult" sclass="result-section">
+				<label id="lid" value="fgh"/>
+			</div>
+		</vbox>
+	</div>
+</zk>

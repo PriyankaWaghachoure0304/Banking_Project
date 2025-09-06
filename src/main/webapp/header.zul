@@ -1,0 +1,645 @@
+<?page title="Header-SDP Horizon Bank" contentType="text/html;charset=UTF-8"?>
+<?link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"?>
+<zk>
+	<style>
+
+		
+		
+		
+		.top-bar { background-color: #f5f5f5; padding: 5px 20px;
+		font-size: 12px; display: flex; justify-content: space-between;
+		align-items: center; color: #000000; }
+
+		.top-links{
+
+		width:600px; display:flex; align-items:center;
+		justify-content:space-between; }
+
+		.top-links span{ margin-left: 15px; font-size: 12px; color:
+		#000000; cursor: pointer;
+
+
+		}
+
+		.nav-bar { height:80px; background-color: white; border-bottom:
+		1px solid #ccc; padding: 12px 20px; display: flex; align-items:
+		center; justify-content: space-between;
+		
+		background-color: rgba(255, 255, 255, 0.9);
+
+		
+		 }
+
+		
+		.logo { display: flex; align-items: center;
+
+
+		}
+
+		.logo img {
+		 height: 60px; 
+		 width:160px; 
+		 margin-right: 10px; 
+		 
+		 }
+
+		.nav-links { width:580px; height:100px; display:flex;
+		align-items:center; justify-content:center;
+		
+
+		}
+
+		.nav-links>div .z-label{
+		 font-weight: 800; 
+		 font-size: 16px; 
+		 cursor:pointer; 
+		  
+		 <!-- color: #000000; -->
+
+		}
+		
+		.navs{
+		
+		display:flex;
+		align-items:center;
+		 justify-content: center; 
+		border-radius:9px 7px 0 0;
+		
+		}
+
+
+
+		.nav-buttons button { height:45px; width:110px;
+		 margin-left:10px; 
+		font-weight: bold;  
+		border-radius: 6px;
+		font-size: 16px; 
+		}
+
+		.join-btn { background-color: #004aad; color: white; border:
+		none; }
+
+		.login-btn { border: 2px solid #004aad; color: #004aad;
+		background-color: white; } 
+		
+		
+		<!-- .drop{ 
+		background-color:#004aad;
+		height:300px; } -->
+
+/* Remove ZK's default popup look */
+.z-popup {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+}
+
+/* Dropdown styling */
+.drop {
+	
+
+    width: 600px; /* consistent dropdown width */
+    height: 250px;
+    background-color: #004aad;
+    border: 1px solid #ccc; /* single border */
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+    padding: 15px;
+    box-sizing: border-box;
+    z-index: 1000;
+   <!--  margin-top:40px; -->
+}
+
+/* Make popup appear right below nav bar */
+.nav-links > div > .z-popup {
+    position: absolute !important;
+    top: 100px !important; /* same as nav-bar height */
+    left: 0 !important;
+}
+
+/* Optional: make popup align with its parent tab */
+.nav-links > div {
+	    margin-top: 35px;
+    position: relative;
+    width: 100%;
+    height: 44px;
+    
+    
+}
+.nav-links > div > .z-popup {
+
+    left: 0 !important;
+}
+
+
+
+			.tab-content{
+				border-radius:5px;
+				background-color:#ebebfa;
+				display:flex;
+				flex-direction:column;
+				width:30%;
+				height:230px;
+				
+				<!-- border:2px solid blue; -->
+			}
+
+	.nav-content{
+	
+	display:flex;
+	
+	<!-- border:2px solid green; -->
+	}
+	
+	.adds{
+	
+	
+	height:230px;
+	<!-- border:2px solid yellow; -->
+	}
+	
+	.adds img{
+		width: 400px;
+ 	 	height: 230px; 
+	}
+	
+	.tab{
+		<!-- background-color:#b3b3ff; -->
+		display:flex;
+		align-items:center;
+		
+		<!-- justify-content:center; -->
+		width:100%;
+		height:40px;
+		border-bottom:1px solid   #cccccc; 
+		border-radius:5px 5px 0 0;
+		<!-- border:2px solid pink; -->
+		padding: 10px;
+		cursor:pointer;
+		transition:background-color 0.5s ease, color 0.5s ease;
+	}
+	
+	.tab span{
+		font-weight:bold;
+	}
+	
+	.tab:hover{
+		background-color:#004aad;
+		color:white;
+	}
+
+
+
+
+
+
+
+
+
+
+
+/* Base styles — already yours */
+
+/* Responsive breakpoints */
+
+/* Tablet */
+@media (max-width: 1024px) {
+    .top-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        font-size: 11px;
+    }
+    .top-links {
+        flex-wrap: wrap;
+        width: 100%;
+        justify-content: flex-start;
+    }
+    .nav-bar {
+        flex-wrap: wrap;
+        height: auto;
+        padding: 10px;
+    }
+    .logo img {
+        height: 50px;
+        width: auto;
+    }
+    .nav-links {
+        width: 100%;
+        justify-content: space-around;
+    }
+    .nav-links > div {
+        margin-top: 10px;
+    }
+    .nav-buttons button {
+        height: 38px;
+        width: 90px;
+        font-size: 14px;
+    }
+    .drop {
+        width: 90%;
+        height: auto;
+    }
+    .adds img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .top-bar {
+        padding: 5px 10px;
+    }
+    .nav-bar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .nav-links {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+    }
+    .navs {
+        width: 100%;
+        justify-content: flex-start;
+    }
+    .nav-buttons {
+        margin-top: 10%;
+        width: 50%;
+        display: flex;
+        justify-content: flex-start;
+    }
+    .nav-buttons button {
+        flex: 1;
+        margin-left: 0;
+        margin-right: 5px;
+    }
+    .drop {
+        position: static !important;
+        width: 100% !important;
+    }
+    .tab-content {
+        width: 100%;
+        height: auto;
+    }
+}
+
+/* Extra small devices */
+<!-- @media (max-width: 480px) {
+    .top-links {
+        display: none; /* hide top links for very small screens */
+    }
+    .nav-links {
+        display: none; /* hide menu for hamburger */
+    }
+   
+   
+   
+} -->
+
+
+
+
+@keyframes rotate-scale-reset {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(360deg) scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+
+.logo img {
+  display: inline-block;
+}
+
+.logo:hover img {
+ animation: rotate-scale-reset 1.5s ease-in-out 1;
+}
+
+
+	
+	.profile img{
+		width:50px;
+		height:50px;
+		border-radius:50%;
+		cursor:pointer;
+		
+		
+	}
+	
+	.profile-logo{
+		width:50px;
+		height:50px;
+		border-radius:50%;
+	}
+	
+
+	.z-drawer-right .z-drawer-real {
+		width:400px;
+	}
+
+	<!-- #0F2C48 -->
+	 .fi {
+        
+        
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        font-family: "Segoe UI", sans-serif;
+    }
+
+    .drawer_img {
+        border-radius: 50%;
+        border: 3px solid #4a90e2;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .userName {
+        font-weight: bold;
+        font-size: 18px;
+        color: #333;
+        margin-top: 10px;
+    }
+
+    .profile-info {
+        <!-- display: flex; -->
+        padding: 10px;
+        gap: 30px;
+        margin-left: 25px;
+        font-size: 14px;
+        color: #555;
+    }
+
+    .profile-info .label-title {
+        font-weight: 600;
+        color: #444;
+        line-height: 2;
+    }
+
+    .profile-info .label-value {
+        color: #222;
+        line-height: 2;
+    } 
+    
+    
+    .z-drawer-header {
+	    padding: 13px 16px;
+	    border-bottom: 1px solid #D9D9D9;
+	    display: flex;
+	    align-items: center;
+	    justify-content: center;
+   
+	}
+	
+	.z-drawer-title {
+		    font-size: 27px;
+		    font-weight: bold;
+		    color:#004aad;
+	}
+	
+	
+	.languagebar{
+	
+	margin-right:50px;
+		width:35px;
+	}
+	.z-menu-content i{
+	margin:0;
+	}
+	
+	.z-menu-content{
+		border-radius:50%;
+		<!-- border:1px solid black;	 -->
+		
+	}
+	
+	
+	.n_count{
+	
+		width:35px;
+		height:35px;
+		border-radius:50%;
+		position:relative;
+		
+	
+	}
+	
+	
+	.notif_btn{
+		border:none;
+		background:none;
+		border-radius:50%;
+		width:40px;
+		height:40px;
+	}
+	
+	.notif_btn:hover{
+		background-color: #f5f5f5;
+	}
+	
+	.count{
+		<!-- border:2px solid blue;  -->
+		border-radius:50%; 
+		display:flex; 
+		align-items:center; 
+		justify-content:center; 
+		background-color: #f5f5f5; 
+		width:17px;
+		height:17px;
+		position:absolute;
+	
+	}
+	
+	.n_btn_container{
+		display:inline;
+	}
+	
+	
+	
+	.home-tab:hover{
+		background-color:#004aad;color:white !important; border-radius:9px 7px 0 0;
+	}
+	
+	
+	</style>
+
+
+	<div sclass="header" apply="com.sdp.header.HeaderComposer">
+		<!-- Top Info Bar -->
+		<div sclass="top-bar">
+			<div>
+				<label value="${labels.menu.name}"/>
+			</div>
+			
+		</div>
+
+		<!-- Main Navigation -->
+		<div sclass="nav-bar">
+			<!-- Logo -->
+			<div class="logo">
+				<image src="/Images/sdpbanklogo1.png" />
+			</div>
+
+			<!-- Navigation Links -->
+			<div id="nav_links" class="nav-links">
+			<div id="home" sclass="home-tab navs">
+					<label value="${labels.home}"/>
+				</div>
+				<div id="accounts" sclass="navs">
+					<label value="${labels.account}"/>
+					<popup id="drop1" sclass="drop">
+						<div  sclass="nav-content">
+							<div  sclass="tab-content">
+								<div id="tab1" sclass="tab tab1"><label value="${labels.tab.account.opening}"/></div>
+								<div id="transactionHistory" sclass="tab tab2"><label value="${labels.tab.transaction.history}"/></div>
+								<div id="check" sclass="tab tab3"><label value="${labels.tab.check.balance}"/></div>
+							</div>
+							<div sclass="adds">
+								<image src="/Images/account_tab.png" />
+							</div>
+						</div>
+					</popup>
+				</div>
+
+				<div id="cards" sclass="navs">
+					<label value="${labels.menu.cards}"/>
+					<popup id="drop2" sclass="drop">
+						<div sclass="nav-content">
+							<div sclass="tab-content">
+								<div id="debit_Card" sclass="tab"><label value="${labels.tab.debit.card}"/></div>
+								<div id="credit_Card" sclass="tab"><label value="${labels.tab.credit.card}"/></div>
+							</div>
+							<div sclass="adds">
+								<image src="/Images/card_tab.jpg" />
+							</div>
+						</div>
+					</popup>
+				</div>
+
+				<div id="payments" sclass="navs">
+					<label value="${labels.menu.payments}"/>
+					<popup id="drop3" sclass="drop">
+						<div sclass="nav-content">
+							<div sclass="tab-content">
+								<div sclass="tab" id="transferMoney"><label value="${labels.tab.transfer.money}"/></div>
+								<div sclass="tab" id="createMpin"><label value="${labels.tab.create.mpin}"/></div>
+								<div sclass="tab" id="b2b"><label value="${labels.tab.b2b.transfer}"/></div>
+							</div>
+							<div sclass="adds">
+								<image src="/Images/payment_tab.png" />
+							</div>
+						</div>
+					</popup>
+				</div>
+
+				<div id="loans" sclass="navs">
+					<label value="${labels.menu.loans}"/>
+					<popup id="drop4" sclass="drop">
+						<div sclass="nav-content">
+							<div sclass="tab-content">
+								<div class="tab" id="personalLoan"><label value="${labels.tab.personal.loan}"/></div>
+								<div class="tab" id="homeLoan"><label value="${labels.tab.home.loan}"/></div>
+								<div class="tab" id="track"><label value="${labels.tab.track.status}"/></div>
+							</div>
+							<div sclass="adds">
+								<image src="/Images/loan_tab.jpg" />
+							</div>
+						</div>
+					</popup>
+				</div>
+
+				<div id="learn" sclass="navs">
+					<label value="${labels.menu.upi}"/>
+					<popup id="drop5" sclass="drop">
+						<div sclass="nav-content">
+							<div sclass="tab-content">
+								<div class="tab" id="createUPI"><label value="${labels.tab.create.upi}"/></div>
+								<div class="tab" id="myQR"><label value="${labels.tab.myqr}"/></div>
+							</div>
+							<div sclass="adds">
+								<image src="/Images/upi_tab.jpeg" />
+							</div>
+						</div>
+					</popup>
+				</div>
+			</div>
+
+			<!-- Buttons -->
+			
+			
+			<div sclass="nav-buttons">
+				<button id="signup" sclass="join-btn" label="${labels.button.signup}"/>
+				<button id="login" sclass="login-btn" label="${labels.button.login}"/>
+				<button id="logout" sclass="login-btn" visible="false" label="${labels.button.logout}"/>
+			</div>
+			
+			
+<button id="langBtn" label="🌐 Language" popup="langMenu, after_start" />
+
+<menupopup id="langMenu">
+    <menuitem id="hindi" label="Hindi" />
+    <menuitem id="english" label="English" />
+</menupopup>
+
+			
+			<div sclass="n_count" id="n_count" >
+				<div sclass="count">
+					<label  id="notification_number" style="font-size:12px;">0</label>
+				</div>
+				<div sclass="n_btn_container">
+					<button id="notification_button" zclass="notif_btn" iconSclass="z-icon-solid z-icon-bell z-icon-2x"/>
+				</div>
+			</div>
+			
+			<div id="profile" sclass="profile"  > 
+				<button id="profile_logo" zclass="profile-logo" iconSclass="z-icon-solid z-icon-user z-icon-xl"/>
+				<image id="profile_image" visible="false" tooltip="tooltip_popup"/>
+				<popup sclass="toolPopup" id="tooltip_popup" >
+					<div>
+						<separator/>
+						<label id="tooltip_name"/>
+					</div>
+				</popup>
+			</div>
+			
+			<drawer sclass="fi" id="fi" title="${labels.profile.title}">
+				<div>
+					<div style="display:flex; align-items:center;justify-content:center; margin-bottom:10px">
+						<image sclass="drawer_img" id="drawer_img" width="100px" height="100px"/>
+					</div>
+
+					<div  style="display:flex; align-items:center;justify-content:center; margin-bottom:30px;">
+						<label id="userName" sclass="userName"/>
+					</div>
+
+					<div class="profile-info">
+        	
+        	<div style="display:flex; gap:53px"><label sclass="label-title" value="Name"/> <label id="user_name" sclass="label-value"/></div>
+        
+        	<div style="display:flex; gap:2px;"><label sclass="label-title" value="Acc Number"/><label id="user_accountNumber" sclass="label-value"/></div>
+        	<div style="display:flex; gap:54px; "> <label sclass="label-title" value="Email"/><label id="user_email" sclass="label-value"/></div>
+        	<div style="display:flex; gap:48px;"><label sclass="label-title" value="Phone"/> <label id="user_mobile" sclass="label-value"/></div>
+        
+        
+        
+        <div>
+   		     <include src="/Qr/qrcode.zul"/>
+   		     
+        </div>
+        
+        <div style="display:flex; align-items:center; justify-content:center; margin-top:20px; margin-bottom:20px;">
+        	<button id="logout2" sclass="login-btn" visible="false">Log Out</button>
+        </div>
+        
+       
+        </div>
+				</div>
+			</drawer>
+		</div>
+	</div>
+
+
+</zk>

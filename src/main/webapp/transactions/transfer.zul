@@ -1,0 +1,334 @@
+
+<?page title="Transfer" contentType="text/html;charset=UTF-8"?>
+<zk>
+	
+
+	
+
+
+
+		<style>
+
+			.transfer-header{ 
+			<!-- background: linear-gradient(135deg, #e0f7fa, #ffffff);
+			
+			   background: hsla(189, 74%, 43%, 1);
+
+				background: linear-gradient(90deg, hsla(189, 74%, 43%, 1) 0%, hsla(248, 57%, 52%, 1) 100%);
+				
+				background: -moz-linear-gradient(90deg, hsla(189, 74%, 43%, 1) 0%, hsla(248, 57%, 52%, 1) 100%);
+				
+				background: -webkit-linear-gradient(90deg, hsla(189, 74%, 43%, 1) 0%, hsla(248, 57%, 52%, 1) 100%); -->
+				
+				background-color:#edf2fb;
+			
+			
+			 }
+
+			.d1 { background: #13617d; margin: 30px auto; padding: 30px;
+			border-radius: 12px; box-shadow: 0 8px 20px rgba(0, 0, 0,
+			0.08); width: 500px; height: 550px; border: 1px solid
+			#e0e0e0; 
+			color:white;
+			
+			}
+
+
+			
+			.name { font-size: 12px; color: green; font-style: italic;
+			}
+
+			.static-label{ font-size: 14px; color: white; font-weight: 600; }
+
+			.transfer-header .z-combobox, .z-doublebox, .z-textbox, .z-radiogroup,
+			.transfer-header.z-radio { font-size: 14px; border-radius: 6px; box-shadow:
+			inset 0 1px 3px rgba(0,0,0,0.05); }
+
+			.transfer-header.z-button { background: linear-gradient(to right, #1976d2,
+			#2196f3); color: white; font-weight: bold; border: none;
+			border-radius: 6px; box-shadow: 0 4px 12px rgba(33, 150,
+			243, 0.3); transition: background 0.3s ease; }
+
+			.transfer-header button:hover { background: linear-gradient(to right,
+			#1565c0, #1e88e5); box-shadow: 0 6px 14px rgba(21, 101, 192,
+			0.4); cursor: pointer; }
+
+			
+			
+			.header1{
+			font-weight:bold;
+			font-size:30px;
+			text-align:center;
+			color:#004aad;
+			
+			
+			
+			}
+			.dheader{
+			margin:auto;
+			 
+			  width: 600px;
+  				display: flex;
+ 				 justify-content: center;  /* horizontal centering */
+ 				 align-items: center;
+			}
+			
+			.transfer-header{
+			padding:40px;
+			}
+			
+			.star{
+				color:red;
+			}
+			
+			
+			.main-check-container{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+     <!--  height: 100vh; -->
+      font-family: Arial, sans-serif;
+    }
+
+    .form-card {
+      background: #ffffff;
+      padding: 100px;
+      border-radius: 20px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      width: 400px;
+      
+      text-align: center;
+    }
+
+    .form-card label {
+      font-size: 16px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .form-card textbox {
+      width: 100%;
+      margin-bottom: 20px;
+      padding: 8px;
+      font-size: 14px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    .form-card button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .form-card button:hover {
+      background-color: #0056b3;
+    }
+
+    .receipt-window {
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+      border-radius: 15px;
+      background-color: #fff;
+      <!--  margin:auto; -->
+    }
+
+    .receipt-content {
+      padding: 20px;
+      font-size: 14px;
+      background-color: #fafafa;
+      border-radius: 10px;
+      box-shadow: inset 0 0 10px #e0e0e0;
+    }
+
+    .receipt-content .title {
+      font-size: 20px;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 15px;
+      color: #333;
+    }
+
+    .receipt-content label {
+      font-weight: normal;
+      color: #555;
+    }
+    
+    
+    .form-container { display: flex; justify-content: center;
+		align-items: center; height: 100vh; background-color: #f0f4f8; }
+
+		.mpin-window { background-color: white; border-radius: 12px;
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); padding: 30px; width:
+		400px; }
+
+		.form-label { font-weight: bold; margin-top: 10px; color: #333;
+		}
+
+		.form-button { background-color: #1976d2; color: white; border:
+		none; padding: 10px 20px; border-radius: 6px; font-weight: bold;
+		cursor: pointer; }
+
+		.form-button:hover { background-color: #1565c0; }
+
+		.show1{ cursor: pointer; padding:0 0; background-color:white;
+		border:none; color:black; 
+		
+		transform: translateX(-28px) translateY(+5px);
+		}
+			.show2{ cursor: pointer; padding:0 0; background-color:white;
+		border:none; color:black; 
+		
+		transform: translateX(200px) translateY(-37px);
+		}
+	
+
+		.row-flex { display: flex; align-items: center;
+
+		}
+		
+		
+		 .popup-center {
+    position: absolute;
+    top: 58%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    <!-- z-index: 103; -->
+  }
+
+<!--   .receipt-btn {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    z-index: 1000;
+  } -->
+		</style>
+		
+<div sclass="transfer-header" width="100%" apply="com.sdp.transaction.Transfer">
+
+ <button id="r1" sclass="receipt-btn" label="Get Receipt" visible="false" />
+
+
+<button id="setMpin" label="Set Mpin" visible="false" onClick='execution.sendRedirect("/MPin/mPINcreate.zul")'/>
+		<div sclass="dheader"><label sclass="header1">TRANSFER MONEY</label></div>
+		<div sclass="d1" width="500px" height="570px">
+
+			<vlayout spacing="7px" sclass="p-4">
+
+				<label sclass="static-label" value="Transfer From:" />
+				<combobox id="fromAccount" width="100%" disabled="true" />
+				<label id="fromName" sclass="name"></label>
+
+				<hlayout>
+				<label sclass="static-label" value="Transfer To (Beneficiary):" /><label sclass="star" value="*"/>
+				</hlayout>
+				<combobox id="toAccount" width="100%" />
+				<label id="toName" sclass="name"></label>
+
+				<hlayout>
+					<label sclass="static-label" value="Amount:" /><label sclass="star" value="*"/>
+				</hlayout>
+				
+				<doublebox id="amountBox" width="100%"
+					onFocus='transferType.setSelectedItem(null)' format="#,##0.00"
+					 />
+
+				<hlayout><label sclass="static-label" value="Transfer Type:" /><label sclass="star" value="*"/></hlayout>
+				<radiogroup id="transferType">
+					<radio label="NEFT" value="NEFT" />
+					<radio label="IMPS" value="IMPS" />
+					<radio label="RTGS" value="RTGS" />
+				</radiogroup>
+
+
+				<div
+					style="display:flex; justify-content:space-between;">
+					<div>
+						<label sclass="static-label" value="Amount+Taxes:" />
+					</div>
+					<div>
+						<label  sclass="static-label" id="charge"></label>
+					</div>
+
+				</div>
+				<doublebox id="newAmountBox" width="100%"
+					format="#,##0.00" disabled="true" />
+
+				<label sclass="static-label" value="Remark (Optional):" />
+				<textbox id="remarks" width="100%" />
+
+				<button label="Pay" id="submitBtn" width="100%" style="font-weight:bold;" />
+
+				<separator />
+
+				<label id="statusLabel" style="color:red;" />
+
+
+			</vlayout>
+
+
+
+
+		</div>
+		
+		
+		<div id="check_mpin" visible="false" sclass="popup-center">
+  <div id="main_check_container" sclass="main-check-container">
+    <div sclass="form-card">
+    
+      <label value="Enter Password" style="font-weight:bold; font-size:18px" />
+      <separator/>
+      <textbox id="password" type="password"   maxlength="4"
+    constraint="no empty: Required; /^(?!0000)\d{4}$/ : Must be exactly 4 digits and not 0000"/>
+    
+   		 <separator/>
+      <button id="confirmPass" label="Confirm" />
+      
+    </div>
+  </div>
+</div>
+
+
+		
+		<div id="r_window"  width="500px"
+      apply="com.sdp.controller.ReceiptController"  sclass="popup-center" visible="false">
+
+      
+
+      <vlayout id="vlayout" spacing="10px" sclass="receipt-content" visible="false">
+        <label value="Transaction Receipt" sclass="title" />
+
+        <grid>
+          <columns>
+            <column width="150px" />
+            <column width="300px" />
+          </columns>
+          <rows>
+            <row><label value="Transaction ID:" /><label id="txnId" /></row>
+            <row><label value="From Account:" /><label id="fromAcc" /></row>
+            <row><label value="To Account:" /><label id="toAcc" /></row>
+            <row><label value="Amount Debited :" /><label id="amount" /></row>
+            <row><label value="Transaction Type:" /><label id="txnType" /></row>
+            <row><label value="Tax:" /><label id="tax" /></row>
+            <row><label value="Remark:" /><label id="remark" /></row>
+            <row><label value="Available Balance:" /><label id="availableBalance" /></row>
+            <row><label value="Timestamp:" /><label id="time" /></row>
+          </rows>
+        </grid>
+
+        <hbox align="center">
+          <button id="close" label="Close" onClick="self.detach()" />
+        </hbox>
+      </vlayout>
+    </div>
+		
+		
+
+</div>
+	
+</zk>

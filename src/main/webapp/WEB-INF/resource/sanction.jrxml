@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report4" language="groovy" pageWidth="595" pageHeight="842" columnWidth="581" leftMargin="14" rightMargin="0" topMargin="18" bottomMargin="1" uuid="ac5c5de2-f5e4-4e52-8651-e653e0409bc7">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="date" class="java.util.Date"/>
+	<parameter name="name" class="java.lang.String"/>
+	<parameter name="propertyAddress" class="java.lang.String"/>
+	<parameter name="loanAmount" class="java.math.BigDecimal"/>
+	<parameter name="tenureMonths" class="java.lang.Integer"/>
+	<parameter name="emi" class="java.lang.Double"/>
+	<parameter name="accountNo" class="java.lang.String"/>
+	<parameter name="logoPath" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="104" splitType="Stretch">
+			<image>
+				<reportElement uuid="9a61b3ba-ef63-44ce-8907-0998ebf57992" x="0" y="2" width="174" height="102"/>
+				<imageExpression><![CDATA[$P{logoPath}]]></imageExpression>
+			</image>
+			<elementGroup>
+				<staticText>
+					<reportElement uuid="97d9f17e-ef8e-4982-a75b-0c30f6b1938a" x="281" y="20" width="101" height="30"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Bank Address]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="73c6be97-bca3-4104-92ad-51247a306d05" x="281" y="2" width="100" height="18"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Bank]]></text>
+				</staticText>
+			</elementGroup>
+			<staticText>
+				<reportElement uuid="4f6e70be-3c7d-4c3f-b752-518d73cd8cfb" x="281" y="50" width="100" height="16"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Account Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="da1c63c1-b6b2-4990-b469-3bf52a12d8e3" x="381" y="2" width="12" height="18"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="da1c63c1-b6b2-4990-b469-3bf52a12d8e3" x="381" y="20" width="12" height="30"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="da1c63c1-b6b2-4990-b469-3bf52a12d8e3" x="381" y="50" width="12" height="16"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="63f47c89-0fad-462f-800c-d40f3f5ef3be" x="281" y="66" width="100" height="18"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[IFSCE Code]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="da1c63c1-b6b2-4990-b469-3bf52a12d8e3" x="381" y="66" width="12" height="18"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9b7ff341-e378-4254-a8ee-bcd256a3ba1e" x="281" y="84" width="100" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Account Number]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="da1c63c1-b6b2-4990-b469-3bf52a12d8e3" x="381" y="84" width="12" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="2aa43fa5-b2af-412a-80f7-de0aea9ca6c1" x="393" y="2" width="162" height="18"/>
+				<textElement/>
+				<text><![CDATA[SDP Horizon Bank]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="58049ab6-f470-4659-b2aa-b82a77205e75" x="393" y="20" width="162" height="30"/>
+				<textElement/>
+				<text><![CDATA[Kalkazi, Near Neheru Enclive Metro, Delhi, 100019]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="494f023e-04d2-4120-ab07-79b22f19d182" x="393" y="66" width="162" height="20"/>
+				<textElement/>
+				<text><![CDATA[SDPHOB00012S]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="8280307a-2b17-4c11-aded-5ace61e2c751" x="393" y="50" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="af327b98-3318-428a-bf71-c9de25ec7ec2" x="393" y="84" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{accountNo}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="138" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="7ea0b3e7-63ed-4ed0-8607-14d4ee00d10d" x="0" y="43" width="41" height="35"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Serif" size="13" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Date:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="c881c7a3-e23f-4b34-b691-9ccaded61405" x="41" y="43" width="160" height="35"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{date}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="cad6120f-c7d4-4d36-8a0d-eb79a964ca7b" x="0" y="78" width="100" height="20"/>
+				<textElement>
+					<font fontName="Serif"/>
+				</textElement>
+				<text><![CDATA[To,]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="dbba58ab-e397-429b-b736-b882e53402af" x="0" y="118" width="131" height="20"/>
+				<textElement>
+					<font fontName="Serif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{propertyAddress}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="4f37c972-10e0-485b-aa59-eda15448eb0b" x="0" y="98" width="100" height="20"/>
+				<textElement>
+					<font fontName="Serif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="3ef62c6c-ea73-47c8-b66e-682d6dcc3e19" x="0" y="0" width="575" height="32" forecolor="#0F2C48"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Serif" size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Loan Sanction Letter]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="26" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="242" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="55bee810-4422-4c0e-82ba-a87466660d15" x="0" y="81" width="100" height="20"/>
+				<textElement>
+					<font fontName="Serif"/>
+				</textElement>
+				<text><![CDATA[Tenure:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="10866eeb-1c53-4bb3-ab5f-370a71aa3d09" x="0" y="24" width="465" height="20"/>
+				<textElement>
+					<font fontName="Serif"/>
+				</textElement>
+				<text><![CDATA[We are pleased to inform you that your loan application has been sanctioned.]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="98d828f2-bb56-41af-8d42-af322bac0496" x="75" y="61" width="100" height="24"/>
+				<textElement>
+					<font fontName="Serif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{loanAmount}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="e99d0629-3b04-43ca-a5db-21e92e7be9b0" x="0" y="101" width="100" height="20"/>
+				<textElement>
+					<font fontName="Serif"/>
+				</textElement>
+				<text><![CDATA[EMI:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="ba295490-944f-4cac-9b4c-870df2aa7f0b" x="31" y="4" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="100ba8af-fb72-40c4-8b73-dc9a01563df3" x="0" y="4" width="100" height="20"/>
+				<textElement>
+					<font fontName="Serif"/>
+				</textElement>
+				<text><![CDATA[Dear]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="48c7a79b-11bd-491d-ad5e-b3d483851b50" x="0" y="61" width="100" height="20"/>
+				<textElement>
+					<font fontName="Serif"/>
+				</textElement>
+				<text><![CDATA[Loan Amount:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="99064db9-04aa-4fb7-8fac-6e8539db36e0" x="41" y="81" width="100" height="20"/>
+				<textElement>
+					<font fontName="Serif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tenureMonths}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="44a1ce49-8649-44ab-9068-daf0d004b887" x="31" y="101" width="100" height="20"/>
+				<textElement>
+					<font fontName="Serif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{emi}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="6c13408f-81fa-4e5c-a495-214cc2228b03" x="0" y="141" width="367" height="20"/>
+				<textElement>
+					<font fontName="Serif"/>
+				</textElement>
+				<text><![CDATA[Please visit our branch to complete the formalities.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="f51652b8-59a2-479e-865a-09e242064a1f" x="0" y="174" width="186" height="20"/>
+				<textElement>
+					<font fontName="Serif"/>
+				</textElement>
+				<text><![CDATA[Thank you for choosing our bank.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="cfe84850-9a18-40c1-a488-c8bddf7f78c5" x="416" y="222" width="165" height="20"/>
+				<textElement>
+					<font fontName="Serif"/>
+				</textElement>
+				<text><![CDATA[Authorized Signature]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="16b1b244-d22d-4f5f-b4db-efc2288476c0" x="416" y="222" width="100" height="1"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="58" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

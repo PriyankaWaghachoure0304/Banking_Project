@@ -1,0 +1,153 @@
+<?page title="New Deposit Page" contentType="text/html;charset=UTF-8"?>
+<zk>
+<style>
+    .page-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: linear-gradient(to bottom right, #e3f2fd, #ffffff);
+    }
+
+    .premium-window {
+        background: linear-gradient(135deg, #dce1e8 0%, #c8cfd9 100%);
+        border-radius: 12px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        border: 1px solid #d1d9e6;
+        padding: 30px;
+        width: 600px;
+    }
+
+    .main-div {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+        width: 100%;
+        max-width: 500px;
+        margin: auto;
+    }
+
+    .form-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .form-label {
+        color: #2c3e50;
+        font-size: 15px;
+        font-weight: 600;
+        font-family: 'Segoe UI', Roboto, sans-serif;
+        min-width: 180px;
+    }
+
+    .premium-textbox,
+    .premium-doublebox {
+        border: 1px solid #d1d9e6;
+        border-radius: 6px;
+     <!--    padding: 10px 14px; -->
+        font-size: 14px;
+        width: 250px;
+        background: #ffffff;
+        box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+      <!--   transition: all 0.3s ease; -->
+    }
+
+    .premium-textbox:focus,
+    .premium-doublebox:focus {
+        border-color: #6c5ce7;
+        box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.2);
+        outline: none;
+    }
+
+    .premium-button {
+        background: linear-gradient(135deg, #6c5ce7 0%, #4a3fcf 100%);
+        color: white;
+        border: none;
+        border-radius: 6px;
+        padding: 12px 24px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 6px rgba(108, 92, 231, 0.2);
+    }
+
+    .premium-button:hover {
+        background: linear-gradient(135deg, #5a4bd1 0%, #3a30bf 100%);
+        box-shadow: 0 6px 8px rgba(108, 92, 231, 0.3);
+        transform: translateY(-1px);
+    }
+
+    .premium-button:active {
+        transform: translateY(1px);
+    }
+
+    .cancel-button {
+        background: #bdc3c7;
+        color: #2c3e50;
+        font-weight: 600;
+    }
+
+    .cancel-button:hover {
+        background: #95a5a6;
+    }
+
+    .button-group {
+        display: flex;
+        justify-content: flex-end;
+        gap: 15px;
+    }
+
+    .premium-separator {
+        border-top: 1px solid #e0e6ed;
+        margin: 10px 0;
+    }
+
+    .title-center {
+        text-align: center;
+        font-size: 20px;
+        font-weight: bold;
+        color: #2c3e50;
+        margin-bottom: 25px;
+        font-family: 'Segoe UI', Roboto, sans-serif;
+    }
+    <!-- .form-row .z-combobox{
+    	position:sticky;
+    } -->
+    
+    .z-combobox-popup{
+    
+    
+    }
+</style>
+
+<div sclass="page-wrapper">
+    <window title="Premium Deposit Portal" border="normal" apply="com.sdp.diposit.DepositComp"
+        sclass="premium-window">
+
+        <div class="title-center">Premium Deposit Portal</div>
+
+        <div sclass="main-div">
+            <!-- Account Combobox -->
+            <div class="form-row">
+                <label value="Select Account:" sclass="form-label"/>
+                <combobox id="accountCombo" sclass="premium-textbox" autodrop="true" autocomplete="true"/>
+            </div>
+
+            <!-- Amount Box -->
+            <div class="form-row">
+                <label value="Enter Amount:" sclass="form-label"/>
+                <doublebox id="amountBox" sclass="premium-doublebox" format="#,##0.00" placeholder="0.00"/>
+            </div>
+
+            <separator sclass="premium-separator"/>
+
+            <div class="button-group">
+                <button id="cancelBtn" label="Cancel" sclass="premium-button cancel-button"/>
+                <button id="deposit" label="Deposit Funds" sclass="premium-button"/>
+            </div>
+        </div>
+    </window>
+</div>
+</zk>

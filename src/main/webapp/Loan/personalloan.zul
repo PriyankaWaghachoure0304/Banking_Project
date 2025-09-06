@@ -1,0 +1,251 @@
+<?page title="Personal Loan " contentType="text/html;charset=UTF-8"?>
+
+<zk xmlns:ca="client/attribute">
+	<style>
+		.anchor-btn:hover { color: #db1281; text-decoration: underline;
+		cursor: pointer; }
+
+		.loan-video-widget img { max-width: 80%; height: auto; display:
+		block; margin: 0 auto; } .calculate { background-color: #ffffff;
+		border-radius: 10px; padding: 50px; width: 300px; box-shadow: 0
+		4px 12px rgba(0, 74, 173, 0.15); margin: 20px auto; text-align:
+		center; border: 2px solid #004aad; }
+
+		.calculate label { display: block; margin-bottom: 10px;
+		font-size: 16px; font-weight: bold; letter-spacing: 0.5px; }
+
+		#emiLabel { color: #004aad; }
+
+		#totalPayableLabel { color: #e63946; } .ptext {color:#004aad;}
+		.applybtn{background-color:#004aad; font-size: 15px;}
+
+		.applybtn{ color: #FFF; transition: all 0.5s; position:
+		relative; }
+		 .applybtn::before { content: ''; position: absolute;
+		top: 0; left: 0; width: 100%; height: 100%; z-index: 1;
+		background-color: rgba(255,255,255,0.1); transition: all 0.3s; }
+		.applybtn:hover::before { opacity: 0 ; transform:
+		scale(0.5,0.5); } 
+		.applybtn::after { content: ''; position:
+		absolute; top: 0; left: 0; width: 100%; height: 100%; z-index:
+		1; opacity: 0; transition: all 0.3s; border: 1px solid
+		rgba(255,255,255,0.5); transform: scale(1.2,1.2); }
+		.applybtn:hover::after { opacity: 1; transform: scale(1,1); }
+		.l{color:red;}
+		
+		.target{
+		margin-left:2%;
+		padding:30px;
+	
+		}
+		.upperdiv{
+			border:1px solid black;
+			border-radius:12px;
+			box-shadow: 10px 10px 5px #888888;
+			width:100%;
+			margin-bottom:30px;
+			
+		}
+		
+		.picture{
+		justify-content:center;
+		align-item:center;
+		display:flex;
+		gap:5%;
+		
+		}
+	</style>
+
+	<div style="overflow:auto; padding:20px;  "
+		apply="com.sdp.controller.loancontroller.PersonalLoanController"  >
+		
+		<div sclass="upperdiv" >
+		<hbox spacing="220px"
+			style="margin-left:50px;margin-top:50px;">
+			<vbox spacing="30px">
+				<label value="Personal Loan"
+					style="font-weight: bold;font-size:30px;color:#004aad;" />
+				<groupbox width="250px" style="color:#004aad">
+					<caption label="MAX" />
+					<box>₹5000000/-</box>
+				</groupbox>
+				<label value="Up to 84 Months" />
+				<button sclass="applybtn" id="applyBtn" visible="false"/>
+				<label  sclass="l" id="create"></label>
+			</vbox>
+			<image src="/Images/man.png" width="400px" height="400px"></image>
+			<vbox spacing="20px" style="margin-top:90px;">
+				<label sclass="ptext">
+					💎 Minimum Documentation Required
+				</label>
+				<label sclass="ptext">
+					💎 Personal Loan Upto 40 Lakhs
+				</label>
+				<label sclass="ptext">
+					💎 Online, Paperless Process
+				</label>
+				<label sclass="ptext">💎 Quick Approval</label>
+			</vbox>
+		</hbox>
+		</div>
+		
+		<div sclass="upperdiv">
+		<vlayout spacing="20px" style="padding:20px;">
+			<div height="auto" style="padding:20px;">
+				<hbox spacing="50px">
+					<vlayout spacing="10px">
+						<label value="Personal Loan EMI Calculator"
+							style="font-size:20px; font-weight:bold; color:#004aad;" />
+						<label>
+							Personal Loan EMI calculator helps you
+							estimate your monthly payments when
+							considering a Personal Loan. Whether it's
+							for unexpected expenses, personal
+							improvements, or consolidating debt, knowing
+							how to calculate your loan payments enables
+							you to manage finances effectively. By
+							understanding Personal Loan interest rates
+							and their impact on your budget, you can
+							choose the best loan options and plan
+							repayments comfortably.
+						</label>
+					</vlayout>
+
+				</hbox>
+			</div>
+		</vlayout>
+		</div>
+
+		<div  sclass="target">
+			<!-- <anchornav>
+				<hlayout spacing="15px" style="margin-bottom:20px;">
+					<a ca:data-anchornav-target="$win1"
+						class="anchor-btn" style="color:#004aad; font-size: 15px;">
+						Calculator
+					</a>
+					<a ca:data-anchornav-target="$win2"
+						class="anchor-btn" style="color:#004aad; font-size: 15px;">
+						Features
+					</a>
+				</hlayout>
+			</anchornav>
+ -->
+			<div id="win1" height="400px" sclass="upperdiv"
+				onCreate="updateTotal()"  style="padding:30px; " >
+				<hbox spacing="50px">
+					<vbox>
+						<hlayout spacing="10px">
+							<label value="Select Loan Amount" />
+							<intbox id="loanAmountBox" value="50000"
+								width="100px"
+								onChange="loanAmountSlider.setCurpos(self.getValue()); updateTotal();" />
+						</hlayout>
+
+						<slider id="loanAmountSlider" curpos="50000"
+							maxpos="5000000" pageIncrement="1000" width="300px"
+							onScroll="loanAmountBox.setValue(self.curpos); updateTotal();" />
+
+						<hlayout spacing="10px"
+							style="margin-top:15px;">
+							<label value="Interest Rate (p.a)" />
+							<decimalbox id="interestRateBox"
+								value="9.91" format="##.##" width="80px"
+								onChange="interestRateSlider.setCurpos((int)(self.getValue() * 10)); updateTotal();" />
+							<label value="%" />
+						</hlayout>
+
+						<slider id="interestRateSlider" curpos="99"
+							minpos="99" maxpos="200" pageIncrement="1" width="300px"
+							onScroll="interestRateBox.setValue(new java.math.BigDecimal(self.curpos / 10.0)); updateTotal();" />
+
+						<hlayout spacing="10px"
+							style="margin-top:15px;">
+							<label value="Number of Months" />
+							<intbox id="numMonthsBox" value="12"
+								width="80px"
+								onChange="numMonthsSlider.setCurpos(self.getValue()); updateTotal();" />
+						</hlayout>
+
+						<slider id="numMonthsSlider" curpos="12"
+							minpos="12" maxpos="84" pageIncrement="1" width="300px"
+							onScroll="numMonthsBox.setValue(self.curpos); updateTotal();" />
+					</vbox>
+					<div sclass="calculate">
+						<vlayout style="margin-top:50px;">
+							<label id="emiLabel" value="Monthly EMI: ₹0"
+								style="font-size:16px; font-weight:bold;" />
+							<label id="totalPayableLabel"
+								value="Total Payable: ₹0"
+								style="font-size:16px; font-weight:bold;" />
+						</vlayout>
+					</div>
+					<div sclass="loan-video-widget">
+						<image src="/Images/personalLoan.gif"
+							width="600px" height="auto" style="border-radius:10px;" />
+					</div>
+				</hbox>
+				<zscript>
+	void updateTotal() {
+		double P = loanAmountBox.getValue();
+		double annualRate = interestRateBox.getValue().doubleValue();
+		double r = annualRate / 12 / 100;
+		int n = numMonthsBox.getValue();
+
+		double EMI;
+		if (r > 0) {
+			EMI = (P * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+		} else {
+			EMI = P / n;
+		}
+		double totalPayable = EMI * n;
+
+		java.text.DecimalFormat df = new java.text.DecimalFormat("#,##0.00");
+		totalPayableLabel.setValue("Total Payable: ₹" + df.format(totalPayable));
+		if (n == 0) {
+			numMonthsBox.setValue(12);
+			n = 12;
+		}
+		emiLabel.setValue("Monthly EMI: ₹" + df.format(EMI));
+	}
+</zscript>
+			</div>
+
+			<div id="win2" height="auto" sclass="upperdiv" style="padding:20px; margin-top:50px;">
+				<label style="font-size:30px; padding:35%;">
+					Instant Loan Featuress
+				</label>
+				<separator height="50px"></separator>
+				<div  sclass="picture">
+				
+				
+				<hbox spacing="100px">
+				
+					<div>
+						<vbox spacing="30px">
+							<image src="/Images/pimage1.png" height="70px" width="70px"></image>
+							<label value="No Collateral Required"></label>
+						</vbox>
+					</div>
+					<div>
+						<vbox spacing="30px">
+							<image src="/Images/pimage2.png" height="70px" width="70px"></image>
+							<label value="Simple Easy,Online Process"></label>
+						</vbox>
+					</div>
+					<div>
+						<vbox spacing="30px">
+							<image src="/Images/pimage3.png" height="70px" width="70px"></image>
+							<label value="Low Interest Rates"></label>
+						</vbox>
+					</div>
+				</hbox>
+					</div>
+
+
+
+			</div>
+
+			
+		</div>
+	</div>
+</zk>

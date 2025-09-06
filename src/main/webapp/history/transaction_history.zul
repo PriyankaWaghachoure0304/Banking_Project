@@ -1,0 +1,156 @@
+<?page title="Transaction History" contentType="text/html;charset=UTF-8"?>
+<?link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet"?>
+<zk>
+
+
+	<style>
+		.main-content { padding: 30px; background-color: #f5f7fb;
+		font-family: 'Segoe UI', sans-serif; 
+		}
+
+		.header { display: block; justify-content: space-between;
+		align-items: center; margin-bottom: 25px; }
+
+		.header-title { font-size: 20px; font-weight: bold; color: #333;
+		}
+
+		.profile-section { display: flex; align-items: center; gap:
+		10px; }
+
+		.profile-img { width: 35px; height: 35px; border-radius: 50%;
+		object-fit: cover; border: 2px solid #ddd; }
+
+		.logout-btn { background-color: #e53935; color: white; border:
+		none; padding: 6px 12px; font-size: 12px; border-radius: 5px;
+		cursor: pointer; }
+
+		.logout-btn:hover { background-color: #c62828; }
+
+		.filter-section { background: #fff; padding: 15px 20px;
+		border-radius: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+		margin-bottom: 20px; display: flex; flex-wrap: wrap; gap: 20px;
+		align-items: center;
+		 }
+
+		.filter-section label { font-weight: bold; font-size: 13px;
+		color: #555; }
+
+		.btn-show { background-color: #0d47a1; color: #fff; border:
+		none; padding: 6px 12px; font-size: 13px; border-radius: 4px;
+		cursor: pointer; }
+
+		.btn-show:hover { background-color: #1565c0; }
+
+		.search-input { padding: 6px; font-size: 13px; border-radius:
+		5px; border: 1px solid #ccc; width: 200px; }
+
+		.listbox-style { background: #fff; border-radius: 10px; border:
+		none; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+
+		.listhead-style .z-listheader { background-color: #004aad;  }
+
+
+		.listhead-style .z-listheader-content{
+			font-weight: bold;
+		color: #fff; font-size: 16px;
+		}	
+			
+			
+		.listitem-style { font-size: 13px; border-bottom: 1px solid
+		#eee; }
+
+		.status-icon { font-weight: bold; font-size: 16px; text-align:
+		center; }
+
+		.status-complete { color: green; }
+
+		.status-pending { color: orange; }
+
+		.status-cancelled { color: red; }
+		
+		.status-credited {
+		    color: #4caf50; /* Green */
+		    font-weight: 600;
+		}
+		
+		.status-debited {
+		    color: #f44336; /* Red */
+		    font-weight: 600;
+		}
+
+		.pdf-download-icon {
+            background-image: url('https://cdn-icons-png.flaticon.com/512/337/337946.png');
+            background-size: 24px 24px;
+            background-repeat: no-repeat;
+            width: 24px;
+            height: 24px;
+            display: inline-block;
+            cursor: pointer;
+            margin-top: 4px;
+            
+        }
+		
+	</style>
+
+	<div
+		apply="com.sdp.transactionhistory.TransactionHistory">
+		<div sclass="main-content">
+			<!-- Header -->
+			
+
+			<!-- Filters -->
+			<div sclass="filter-section">
+				<label value="From Date:" />
+				<datebox id="fromdate" />
+				<label value="To Date:" />
+				<datebox id="todate" />
+				<label value="Search Remark:" />
+				<textbox id="searchbox" sclass="search-input"
+					placeholder="Type keyword..." />
+
+				<toolbar>
+					<button id="showhistory" label="Show" sclass="btn-show" />
+					<space spacing="50px" />
+					<label id="downloadpdf"
+						tooltiptext="Download as PDF" sclass="pdf-download-icon" />
+				</toolbar>
+
+			</div>
+
+			<!-- Table -->
+			<listbox id="lbhistory" width="100%"
+				sclass="listbox-style">
+				<listhead sclass="listhead-style">
+					<listheader label="From Account" />
+					<listheader label="To Account" />
+					<listheader label="Remark" />
+					<listheader label="Date" />
+					<listheader label="Status" />
+					<listheader label="Amount" />
+				</listhead>
+
+				<template name="model" var="each">
+					<listitem sclass="listitem-style">
+						<listcell label="${each.fromAccount}" />
+						<listcell label="${each.toAccount}" />
+						<listcell label="${each.remark}" />
+						<listcell label="${each.dateTime}" />
+						<listcell>
+						    <label value="${each.from_direction}" 
+						           sclass="${each.from_direction == 'CREDIT' ? 'status-credited' : 'status-debited'}"/>
+						</listcell>
+						<listcell >
+						<hbox>
+							<div width="80px">
+							<label   value="₹${each.amount}" style="color:${each.from_direction == 'CREDIT' ? 'green' : 'red'}"/>
+							</div>
+							<button  zclass="aa" iconSclass="z-icon-solid z-icon-arrow-right-long z-icon-rotate-by z-icon-2xl" style=" --z-icon-rotate-angle: ${each.from_direction == 'CREDIT' ? '135deg' : '-45deg'}; color:#122c59; border:none; background-color:transparent;"/>
+							</hbox>
+							
+						</listcell>
+					</listitem>
+				</template>
+			</listbox>
+		</div>
+	</div>
+</zk>

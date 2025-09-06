@@ -1,0 +1,132 @@
+<?page title="UPI Payment" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<style>
+	
+
+		.center-wrapper {
+			
+			background-color: #ffffff;
+			border-radius: 20px;
+			box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+			padding: 30px;
+			width: 400px;
+			margin: 100px auto;
+			
+			
+		}
+
+		.vbox.payment-box {
+			background: #ffffff;
+			border-radius: 16px;
+			box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+			padding: 32px 28px;
+			width: 100%;
+			max-width: 420px;
+			box-sizing: border-box;
+		}
+
+		button#topay {
+			width: 100%;
+			padding: 14px;
+			background-color: #0b57d0;
+			color: #fff;
+			font-size: 16px;
+			font-weight: 600;
+			border: none;
+			border-radius: 10px;
+			cursor: pointer;
+		}
+
+		/* ✅ overlay for modals */
+		.modal {
+			position: fixed;
+			top: 0; left: 0; right: 0; bottom: 0;
+			background: rgba(0,0,0,0.4);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			z-index: 9999;
+		}
+		.modal-content {
+			background: #fff;
+			border-radius: 12px;
+			padding: 20px;
+			min-width: 300px;
+			box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+			width:395px;
+		}
+	</style>
+
+	<div >
+		<div sclass="center-wrapper" apply="com.sdp.upi.PayBYUpi" id="controller">
+			<vbox sclass="payment-box">
+				<label id="toName" />
+				<label>Amount</label>
+				<doublebox id="amount" />
+				<label>Remark</label>
+				<textbox id="remark" />
+				<button id="topay">Proceed To Pay</button>
+			</vbox>
+
+			<!-- ✅ MPIN Modal -->
+			<div id="mpinPopup" visible="false" sclass="modal">
+			    <div sclass="modal-content">
+			        <vbox spacing="15px" sclass="centered-content">
+			            <label value="Enter your 4-digit MPIN" style="font-weight:bold;"/>
+			            <intbox id="mpinBox" maxlength="4" 
+			                    style="text-align:center;font-size:20px;letter-spacing:10px;"/>
+			            <hlayout spacing="10px" style="justify-content:center;">
+			                <button id="confirmBtn" label="Confirm" width="100px"/>
+			                <button label="Cancel" width="100px" onClick="mpinPopup.setVisible(false)"/>
+			            </hlayout>
+			        </vbox>
+			    </div>
+			</div>
+
+			<!-- ✅ Success Modal -->
+			<div id="popup1" visible="false" sclass="modal">
+			    <div sclass="modal-content">
+			        <vbox spacing="15px" sclass="centered-content">
+			            <image src="/Images/success.png" width="80px" height="80px" style="margin-left:130px"/>
+			            <label id="statusTitle" value="Payment Successful" 
+			                   style="font-size:18px;font-weight:bold;color:green; margin-left:85px" />
+			                   <vbox>
+			                   			            		<hbox>
+			                        <label value="Transaction ID:"/><space spacing="20px"/>
+			                        <label id="txnIdLbl" hflex="2"/>
+			                        </hbox>
+			                        <hbox>
+			                        <label value="Date Time:"/><space spacing="20px"/>
+			                        <label id="timeLbl" hflex="2" />
+			                        </hbox>
+			                        <hbox>
+			                        <label value="To Account:"/><space spacing="20px"/>
+			                        <label id="toAccLbl" hflex="2"/>
+			                        </hbox>
+			                        <hbox>
+			                        <label value="Amount:"/><space spacing="20px"/>
+			                        <label id="amtLbl" hflex="2"/>
+			                        </hbox>
+			                        </vbox>
+			                  <separator/>
+			            <button label="Done" width="100px" onClick="popup1.setVisible(false)"/>
+			        </vbox>
+			    </div>
+			</div>
+
+			<!-- ✅ Failure Modal -->
+			<div id="popup2" visible="false" sclass="modal">
+			    <div sclass="modal-content">
+			        <vbox spacing="15px" sclass="centered-content">
+			            <image src="/Images/failed-icon.jpg" width="64px" height="64px"/>
+			            <label id="statusTitle2" value="Payment Failed" 
+			                   style="font-size:18px;font-weight:bold;color:red;"/>
+			            <label id="statusMsg" value="Incorrect MPIN or Transaction Failed" style="color:#444;"/>
+			            <button label="Done" width="100px" onClick="popup2.setVisible(false)"/>
+			        </vbox>
+			    </div>
+			</div>
+
+		</div>
+	</div>
+</zk>

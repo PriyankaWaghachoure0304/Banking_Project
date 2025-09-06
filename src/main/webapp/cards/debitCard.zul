@@ -1,0 +1,37 @@
+<?page title="Cards" contentType="text/html;charset=UTF-8"?>
+<zk>
+
+<style>
+.d {
+    background-image: url("./Images/DebitCardImage.jpg");
+    background-repeat: no-repeat;      /* ✅ no repeat */
+    background-size: cover;           /* ✅ stretch to fill, keep aspect ratio */
+    background-position: center;      /* ✅ center the image */
+}
+</style>
+    <!-- Full-screen flex container to center everything -->
+    <div sclass="d" style="display: flex; justify-content: center; align-items: center; height: 100vh; ">
+        <div  width="400px" 
+                style="background:white; padding:30px; border-radius:15px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); height:235px;">
+            
+            <!-- Vertical layout inside window -->
+            <vlayout width="100%" spacing="30px" style="display:flex; flex-direction:column; align-items:center;">
+
+                <!-- Debit Card Section -->
+                <hlayout spacing="20px" style="display:flex; align-items:center; justify-content:center;"  >
+                    <image src="/Images/cards.png" width="50px" height="50px" />
+                    <vlayout style="align-items:center;">
+                        <label value="My Debit Cards" style="font-size:16px; font-weight:bold;" />
+                        <label value="View your Debit Cards and Manage services" style="color: #666;" />
+                        <button id="debit" label="View Debit Cards" width="180px" height="40px"
+                                style="background:#007bff; color:white; border:none; border-radius:20px; margin-top:10px;" />
+                    </vlayout>
+                    <image src="/Images/hands_card.jpg" width="40px" height="40px" />
+                </hlayout>
+
+                
+
+            </vlayout>
+        </div>
+    </div>
+</zk>

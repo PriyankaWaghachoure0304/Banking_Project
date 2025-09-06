@@ -1,0 +1,134 @@
+<?page title="Transfer" contentType="text/html;charset=UTF-8"?>
+<zk>
+	
+
+		<!-- <style>
+			.d1{ background-color:cyan; margin:auto; padding:30px;
+			border-radius:10px; }
+			
+			.name{ font-size:10px; color:red; }
+			
+			</style> -->
+
+
+
+		<style>
+			@import
+			url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;display=swap');
+
+
+			.d1 { background: #ffffff; margin: 30px auto; padding: 30px;
+			border-radius: 12px; box-shadow: 0 8px 20px rgba(0, 0, 0,
+			0.08); width: 500px; height: 550px; border: 1px solid
+			#e0e0e0; }
+
+			.name { font-size: 12px; color: green; font-style: italic;
+			}
+
+			label { font-size: 14px; color: #333; font-weight: 600; }
+
+			.bank-header .z-combobox, .z-doublebox, .z-textbox, .z-radiogroup,
+			.z-radio { font-size: 14px; border-radius: 6px; box-shadow:
+			inset 0 1px 3px rgba(0,0,0,0.05); }
+
+			.z-button .bank-header{ background: linear-gradient(to right, #1976d2,
+			#2196f3); color: white; font-weight: bold; border: none;
+			border-radius: 6px; box-shadow: 0 4px 12px rgba(33, 150,
+			243, 0.3); transition: background 0.3s ease; }
+
+			 .bank-header button:hover { background: linear-gradient(to right,
+			#1565c0, #1e88e5); box-shadow: 0 6px 14px rgba(21, 101, 192,
+			0.4); cursor: pointer; }
+
+			#charge { font-weight: bold; color: #004d40; }
+
+			#statusLabel { font-weight: 600; color: #d32f2f; text-align:
+			center; }
+			
+			.header1{
+			font-weight:bold;
+			font-size:30px;
+			text-align:center;
+			
+			
+			
+			}
+			.dheader{
+			margin:auto;
+			 
+			  width: 600px;
+  				display: flex;
+ 				 justify-content: center;  /* horizontal centering */
+ 				 align-items: center;
+			}
+			
+			.bank-header{
+			padding:40px;
+			}
+		</style>
+		
+<div sclass="bank-header" width="100%" apply="com.sdp.sendmoney.SendMoneytoAnother" >
+
+
+	
+		<div sclass="dheader"><label sclass="header1">TRANSFER MONEY BANK TO BANK</label></div>
+		<div sclass="d1" width="500px" height="550px">
+
+			<vlayout spacing="7px" sclass="p-4">
+
+				<label value="Transfer From:" />
+				<combobox id="fromAccount" width="100%" />
+				<label id="fromName" sclass="name"></label>
+
+				<label value="Transfer To (Beneficiary):" />
+				<combobox id="toAccount" width="100%" />
+				<label id="toName" sclass="name"></label>
+
+				<label value="Amount:" />
+				<doublebox id="amountBox" width="100%"
+					 format="#,##0.00"
+					constraint="no empty" />
+
+				<!-- <label value="Transfer Type:" />
+				<radiogroup id="transferType">
+					<radio label="NEFT" value="NEFT" />
+					<radio label="IMPS" value="IMPS" />
+					<radio label="RTGS" value="RTGS" />
+				</radiogroup>
+ -->
+
+				<!-- <div
+					style="display:flex; justify-content:space-between;">
+					<div>
+						<label value="Amount+Taxes:" />
+					</div>
+					<div>
+						<label id="charge"></label>
+					</div>
+
+				</div> -->
+				<!-- <doublebox id="newAmountBox" width="100%"
+					format="#,##0.00" disabled="true" /> -->
+
+				<label value="Remark (Optional):" />
+				<textbox id="remarks" width="100%" />
+
+				<button label="Pay" id="submitBtn1" width="100%" />
+
+				<separator />
+
+				<label id="statusLabel" style="color:red;" />
+
+
+			</vlayout>
+
+
+
+
+		</div>
+		
+		
+
+</div>
+	
+</zk>

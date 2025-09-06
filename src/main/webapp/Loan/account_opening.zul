@@ -1,0 +1,443 @@
+<?page title="Home Loan Application" contentType="text/html;charset=UTF-8"?>
+<zk>
+<style>
+
+/* Responsive */
+@media (max-width: 992px) {
+    .form-container {
+        width: 95%;
+        padding: 15px;
+    }
+    .form-label {
+        width: 100%;
+        margin-bottom: 6px;
+    }
+    .form-input {
+        width: 100% !important;
+    }
+    .form-grid .row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .form-error {
+        width: 100%;
+        margin-left: 0;
+    }
+}
+
+/* Extra small devices (mobile) */
+@media (max-width: 576px) {
+    .form-caption {
+        font-size: 16px;
+        text-align: center;
+    }
+    .form-button {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+    }
+    .form-check {
+        margin-right: 10px;
+    }
+    .form-input.textarea {
+        min-height: 80px;
+    }
+}
+
+/* Container */
+.form-container {
+	margin: 20px auto;
+	padding: 20px;
+	width: 60%;
+	background:linear-gradient(316deg,rgba(76, 128, 191, 1) 0%, rgba(162, 226, 232, 1) 0%, rgba(240, 252, 276, 1) 100%);
+	border-radius: 12px;
+	box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+	font-family: "Segoe UI", Arial, sans-serif;
+	color: #333;
+}
+
+/* Section (groupbox) */
+.form-section {
+	background: #fff;
+	border-radius: 10px;
+	padding: 15px;
+	margin-bottom: 20px;
+	transition: box-shadow 0.3s ease;
+}
+.form-section:hover {
+	box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+}
+
+/* Section title */
+.form-caption {
+	font-size: 18px;
+	font-weight: 600;
+	color: white;
+	margin-bottom: 10px;
+}
+
+/* Grid */
+.form-grid {
+	width: 100%;
+}
+.form-grid .row {
+	padding: 8px 0;
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+}
+.form-label {
+	width: 150px;
+	font-weight: 500;
+	color: #444;
+}
+
+/* Inputs */
+.form-input {
+	flex: 1;
+	
+	padding: 6px 10px;
+	
+	border-radius: 6px;
+	width:70%;
+}
+.form-input:focus {
+	border-color: #1976d2;
+	box-shadow: 0 0 5px rgba(25,118,210,0.3);
+}
+.form-input.textarea {
+	width: 100% !important;
+	min-height: 60px;
+}
+
+.form-check {
+	margin-left: 8px;
+	margin-right: 20px;
+}
+
+/* EMI Labels */
+.emi-label {
+	font-weight: bold;
+	color: #2e7d32;
+}
+
+/* Button */
+.form-button {
+	background: #1976d2;
+	color: #fff;
+	font-weight: bold;
+	padding: 10px 20px;
+	border-radius: 8px;
+	border: none;
+	cursor: pointer;
+	box-shadow: 0 3px 8px rgba(25,118,210,0.25);
+	transition: background 0.3s, transform 0.1s;
+}
+.form-button:hover {
+	background: #0d47a1;
+}
+.form-button:active {
+	transform: scale(0.97);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+	.form-label {
+		width: 100%;
+		margin-bottom: 5px;
+	}
+	.form-input {
+		width: 100% !important;
+	}
+	.form-grid .row {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+}
+
+.z-groupbox-3d>.z-groupbox-header .z-caption-content, .z-groupbox-3d>.z-groupbox-header .z-groupbox-title {
+    display: inline-block;
+    width: 100%;
+    margin: 0;
+    padding: 12px 16px;
+    line-height: 24px;
+   background: linear-gradient(90deg,rgba(101, 133, 191, 1) 45%, rgba(162, 226, 232, 1) 100%);
+    top: 0;
+    color:#ffffff;
+}
+
+.z-combobox-button {
+    font-size: 18px;
+    color: rgba(0, 0, 0, 0.9);
+    display: inline-block;
+    position: sticky;
+    top: 0;
+    right: 0;
+    width: 40px;
+    height: 34px;
+    border: 1px solid #D9D9D9;
+    -webkit-border-radius: 0 4px 4px 0;
+    -moz-border-radius: 0 4px 4px 0;
+    -o-border-radius: 0 4px 4px 0;
+    -ms-border-radius: 0 4px 4px 0;
+    border-radius: 0 4px 4px 0;
+    padding: 6px 8px 0;
+    line-height: 16px;
+    background: #FFFFFF;
+    text-align: center;
+    vertical-align: middle;
+    overflow: hidden;
+    cursor: pointer;
+}
+.z-datebox-button {
+    
+    display: flex;
+    position: absolute;
+    top:6px;
+    right: 0;
+    min-width: 40px;
+    height: 34px;
+    border: 1px solid #D9D9D9;
+    color:#004aad;
+    border-radius: 0 4px 4px 0;
+    padding: 6px 8px 0;
+    line-height: 16px;
+    background: #FFFFFF;
+    text-align: center;
+    vertical-align: middle;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+/* Error Labels under inputs */
+.form-error {
+    width: auto;
+    flex: 1;
+    color: #d32f2f;     
+    font-size: 12px;
+    margin-top: 4px;
+    margin-left: 0px;  
+}
+.z-groupbox-closed {
+	height: 50px;
+	overflow: hidden;
+}
+.heading {
+  font-size: 28px;              /* big title */
+  font-weight: bold;            /* make text bold */
+  text-align: center;           /* center the text */
+  color: #0d47a1;               /* dark blue shade */
+  padding: 15px 20px;           /* space around text */
+  background: linear-gradient(to right, #64b5f6, #81d4fa); /* gradient bg */
+  border-radius: 8px;           /* rounded corners */
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* soft shadow */
+  margin-bottom: 20px;          /* space below heading */
+  letter-spacing: 1px;          /* little spacing between letters */
+}
+.font{
+font-size: 40px;
+font-weight: bold;
+}
+.z-combobox-input {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    color: rgba(0, 0, 0, 0.9);
+    width: 100%;
+    height: 34px;
+    border: 1px solid #D9D9D9;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -o-border-radius: 4px;
+    -ms-border-radius: 4px;
+    border-radius: 4px;
+    margin: 0;
+    padding: 0 8px;
+    padding-right: 48px;
+    line-height: 16px;
+    background: #FFFFFF;
+}
+
+</style>
+<div sclass="mc">
+
+	<div width="80%" apply="com.sdp.customer.AccountOpening" sclass="form-container">
+	<div>
+		<div sclass="heading"   > <label sclass="font"  value="Loan Application"></label> </div>
+	</div>
+		<vbox spacing="20px">
+
+			<groupbox mold="3d" sclass="form-section">
+				<caption label="Step 1: Personal Details" sclass="form-caption"/>
+				<grid sclass="form-grid">
+					<rows>
+						<row>
+							<label value="Name:" sclass="form-label"/>
+							<textbox id="name" sclass="form-input"
+								constraint="no empty:Name cannot be empty, /^[A-Za-z ]+$/:Only letters and spaces allowed"/>
+							<label value="DOB:" sclass="form-label"/>
+							<datebox id="dob" sclass="form-input" constraint="no empty"/>
+						</row>
+						<row>
+							<label value="Gender:" sclass="form-label"/>
+							<radiogroup id="gender" sclass="form-input">
+								<radio label="Male"/>
+								<radio label="Female"/>
+								<radio label="Other"/>
+							</radiogroup>
+							<label value="Marital Status:" sclass="form-label"/>
+							<combobox id="mStatus" sclass="form-input" constraint="no empty">
+								<comboitem label="Single"/>
+								<comboitem label="Married"/>
+								<comboitem label="Divorced"/>
+								<comboitem label="Widowed"/>
+							</combobox>
+						</row>
+						<row>
+							<label value="Mobile:" sclass="form-label"/>
+							<textbox id="mobile" sclass="form-input"
+								maxlength="10"
+								onChanging='if (!event.getValue().matches("\\d*")) self.setValue(self.getValue().replaceAll("[^0-9]", ""));'
+								constraint="no empty:Mobile is required, /^[6-9]\d{9}$/:Enter a valid mobile number"/>
+							<label value="Email:" sclass="form-label"/>
+							<textbox id="email" sclass="form-input"
+								constraint="no empty:Email is required,
+/^[a-zA-Z0-9._%+-]+@(gmail\.com|yahoo\.in|outlook\.org)$/ :Enter a valid email address"
+								
+/>
+						</row>
+					</rows>
+				</grid>
+			</groupbox>
+
+			<groupbox mold="3d" sclass="form-section" >
+	<caption label="Step 2: Employment" sclass="form-caption"/>
+	<grid sclass="form-grid">
+    <rows>
+        <!-- Occupation + Employer -->
+        <row>
+            <label value="Occupation:" sclass="form-label"/>
+            <combobox id="occupation" sclass="form-input" constraint="no empty">
+                <comboitem label="Salaried"/>
+                <comboitem label="Self-Employed"/>
+                <comboitem label="Business"/>
+                <comboitem label="Retired"/>
+            </combobox>
+
+            <label id="employerLbl" value="Employer:" sclass="form-label"/>
+            <textbox id="employer" sclass="form-input"
+                     constraint="no empty:Name cannot be empty, /^[A-Za-z ]+$/:Only letters and spaces allowed"/>
+        </row>
+        <!-- Error row for occupation + employer -->
+        <row>
+            <label sclass="form-label"/> <!-- empty placeholder for alignment -->
+            <label id="occupationError" sclass="form-error" visible="false"/>
+            <label sclass="form-label"/> <!-- empty placeholder -->
+            <label id="employerError" sclass="form-error" visible="false"/>
+        </row>
+
+        <row>
+            <label id="grossLbl" value="Gross Income:" sclass="form-label"/>
+            <doublebox id="gross" sclass="form-input" constraint="no empty"/>
+
+            <label id="netLbl" value="Net Income:" sclass="form-label"/>
+            <doublebox id="net" sclass="form-input" constraint="no empty"/>
+        </row>
+        <row>
+            <label sclass="form-label"/> 
+            <label id="grossError" sclass="form-error" visible="false"/>
+            <label sclass="form-label"/> 
+            <label id="netError" sclass="form-error" visible="false"/>
+        </row>
+    </rows>
+</grid>
+</groupbox>
+
+			<groupbox mold="3d" sclass="form-section" >
+				<caption label="Step 3: Loan Details" sclass="form-caption"/>
+				<grid sclass="form-grid">
+					<rows>
+						<row>
+							<label value="Purpose:" sclass="form-label"/>
+							<textbox id="loanType" sclass="form-input" readonly="true"/>
+							<label value="Repayment Mode:" sclass="form-label"/>
+							<radiogroup id="repay" sclass="form-input" >
+							<vbox>
+								<radio label="Standing Instruction"/>
+								<radio label="NACH"/>
+								</vbox>
+							</radiogroup>
+						</row>
+						 <row>
+            <label value="Loan Amount:" sclass="form-label"/>
+            <doublebox id="loanAmmount" sclass="form-input" constraint="no empty"/>
+
+            <label value="Tenure:" sclass="form-label"/>
+            <intbox id="tenure" sclass="form-input" constraint="no empty" maxlength="2"/>
+        </row>
+        
+        <row>
+            <label sclass="form-label"/> 
+            <label id="loanError" sclass="form-error" visible="false"/>
+            <label sclass="form-label"/> 
+            <label id="tenureError" sclass="form-error" visible="false"/>
+        </row>
+						<row>
+							<label id="emi" value="EMI" visible="false" sclass="emi-label"/>
+							<doublebox id="emiResult" visible="false" sclass="form-input"/>
+							<label id="totalpay" value="Total Payable" visible="false" sclass="emi-label"/>
+							<textbox id="totalPayable" visible="false" sclass="form-input"/>
+						</row>
+					</rows>
+				</grid>
+			</groupbox>
+
+			<groupbox mold="3d" sclass="form-section" >
+				<caption label="Step 4: Property Details" sclass="form-caption"/>
+				<grid sclass="form-grid">
+					<rows>
+						<row>
+							<label value="Property Type:" sclass="form-label"/>
+							<combobox id="propertytype" sclass="form-input" constraint="no empty">
+								<comboitem label="Apartment"/>
+								<comboitem label="Independent House"/>
+								<comboitem label="Plot"/>
+							</combobox>
+							<label value="Property Value:" sclass="form-label"/>
+							<doublebox id="propertyvalue" sclass="form-input" constraint="no empty"/>
+						</row>
+						<row>
+							<label value="Address:" sclass="form-label"/>
+							<textbox id="address" sclass="form-input textarea" multiline="true" rows="2"/>
+
+						</row>
+					</rows>
+				</grid>
+			</groupbox>
+
+			<groupbox mold="3d" sclass="form-section">
+				<caption label="Step 5: Insurance and Declaration" sclass="form-caption"/>
+				<grid sclass="form-grid">
+					<rows>
+						<row>
+							<label value="Need Life Cover:" sclass="form-label"/>
+							<checkbox id="lifeCover" sclass="form-check"/>
+							<label value="Need Suraksha Loan:" sclass="form-label"/>
+							<checkbox id="surakshaLoan" sclass="form-check"/>
+						</row>
+						<row>
+							<label value="I agree to the terms and conditions." sclass="form-label"/>
+							<checkbox id="declaration" sclass="form-check"/>
+						</row>
+						<row>
+							<button id="bSubmit" label="Submit" sclass="form-button"/>
+						</row>
+					</rows>
+				</grid>
+			</groupbox>
+
+		</vbox>
+	</div>
+	</div>
+</zk>

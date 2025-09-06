@@ -1,0 +1,906 @@
+<?page title="Account Opening Form" contentType="text/html;charset=UTF-8"?>
+<zk>
+
+	<style>
+		.account_main_div1 {
+		padding: 20px;
+		font-family: 'Segoe UI', Arial, sans-serif;
+		background-color: #f8f9fa;
+		}
+		.account_main_div1 .z-button {
+		background-color: #004aad;
+		color: white;
+		border: none;
+		border-radius: 4px;
+		padding: 8px 16px;
+		font-weight: 500;
+		transition: background-color 0.2s;
+		margin-right: 200px;
+		}
+		.account_main_div1 .z-button:hover {
+		background-color: #00378a;
+		cursor: pointer;
+		}
+		.account_main_div1 .z-tabbox .z-tabs {
+		background: #e9ecef;
+		border-bottom: 1px solid #dee2e6;
+		}
+		.account_main_div1 .z-tab {
+		font-weight: 500;
+		color: #495057;
+		padding: 10px 15px;
+		}
+		.account_main_div1 .z-tab.z-tab-selected {
+		color: #004aad;
+		border-bottom: 2px solid #004aad;
+		background: linear-gradient(90deg, #e3ffe7 0%, #d9e7ff 100%);
+		}
+		.account_main_div1 .z-tabpanel {
+		padding: 20px;
+		background: white;
+		border: 1px solid #dee2e6;
+		border-top: none;
+		border-radius: 0 0 4px 4px;
+		}
+		.account_main_div1 .z-grid, .z-borderlayout {
+		background: transparent;
+
+		}
+		.account_main_div1 .z-label {
+
+		color: #343a40;
+
+		font-weight: 500;
+
+		}
+
+		.account_main_div1 .z-checkbox, .z-radio {
+
+
+
+		margin-right: 10px;
+
+
+
+		}
+		.account_nav-buttons {
+
+
+
+		margin-top: 25px;
+
+
+
+		text-align: center;
+
+
+
+		padding: 15px;
+
+
+
+		background: white;
+
+
+
+		border: 1px solid #dee2e6;
+		border-radius: 4px;
+		}
+		.account_nav-buttons .z-button {
+
+
+
+		margin: 0 10px;
+
+
+
+		min-width: 100px;
+		}
+		.account_account_nav-buttons .prev-btn {
+
+
+
+		background-color: #6c757d;
+
+
+
+		}
+	.account_account_nav-buttons .prev-btn:hover {
+
+
+
+		background-color: #5a6268;
+
+
+
+		}
+		.form-section {
+
+
+
+		background: white;
+
+
+
+		padding: 20px;
+
+
+
+		border-radius: 6px;
+
+
+
+		box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+
+
+
+		margin-bottom: 20px;
+
+
+
+		}
+
+
+
+
+
+
+
+		.section-title {
+
+
+
+		color: #004aad;
+
+
+
+		font-weight: 600;
+
+
+
+		margin-bottom: 15px;
+
+
+
+		padding-bottom: 8px;
+
+
+
+		border-bottom: 1px solid #dee2e6;
+
+
+
+		}
+
+
+
+
+
+
+
+		.upload-section {
+
+
+
+		display: flex;
+
+
+
+		justify-content: space-around;
+
+
+
+		flex-wrap: wrap;
+
+
+
+		}
+
+
+
+
+
+
+
+		.upload-item {
+
+
+
+		text-align: center;
+
+
+
+		margin: 15px;
+
+
+
+		padding: 15px;
+
+
+
+		border: 1px dashed #ced4da;
+
+
+
+		border-radius: 6px;
+
+
+
+		width: 200px;
+		}
+		.declaration-text {
+
+
+
+		font-size: 12px;
+
+
+
+		line-height: 1.5;
+
+
+
+		padding: 15px;
+
+
+
+		background: #f8f9fa;
+
+
+
+		border-radius: 4px;
+
+
+
+		border: 1px solid #e9ecef;
+
+
+
+		max-height: 200px;
+
+
+
+		overflow-y: auto;
+
+
+
+		}
+		.captcha-container {
+
+
+
+		text-align: center;
+
+
+
+		margin: 20px 0;
+
+
+
+		padding: 15px;
+
+
+
+		background: #f8f9fa;
+
+
+
+		border-radius: 6px;
+
+
+
+		}
+		.account_main_div1 .z-tab-content {
+
+
+
+		border-radius: 5px;
+		background-color: #004aad;
+		display: block;
+
+		padding: 9px;
+		}
+		.account_main_div1 .z-tab-content span{
+		color:white;
+		}
+		.account_main_div1 .z-tab-content:hover {
+		background-color:rgba(23,197,232,100);
+		}
+		.account_main_div1 .z-tab-content:hover span{
+
+		color:black;
+
+		} .account_main_div1 .z-tab-content span:hover{
+
+		color:black;
+		}
+	</style>
+	<div sclass="account_main_div1" width="100%"
+		apply="com.sdp.controller.AccountController">
+		<button zclass="btn" label="Test Auto-Fill" id="autoFillBtn"
+			style="float:right;margin-top:10px;" />
+		<borderlayout height="110vh">
+			<north size="70px" splittable="true">
+				<label
+					style="font-weight:bold;font-size:30px;color:blue">
+					Account Opening Form
+				</label>
+			</north>
+			<west size="200px" collapsible="true"
+				title="Account Section">
+				<vlayout>
+					<button width="160px"
+						onClick="tabbox1.setSelectedTab(tab1)" label="Account Selection" />
+					<button width="160px"
+						onClick="tabbox1.setSelectedTab(tab2)" label="Personal Details" />
+					<button width="160px"
+						onClick="tabbox1.setSelectedTab(tab3)" label="Contact Details" />
+					<button width="160px"
+						onClick="tabbox1.setSelectedTab(tab4)" label="Address Details" />
+					<button width="160px"
+						onClick="tabbox1.setSelectedTab(tab5)" label="Upload Documents" />
+					<button width="160px"
+						onClick="tabbox1.setSelectedTab(tab6)" label="ReviewConfirm" />
+					<button width="160px"
+						onClick="tabbox1.setSelectedTab(tab7)" label="Declaration" />
+				</vlayout>
+			</west>
+			<center autoscroll="true">
+				<tabbox id="tabbox1">
+					<tabs>
+						<tab id="tab1" label="A. Account Selection" />
+						<tab id="tab2" label="B. Personal Details" />
+						<tab id="tab3" label="C. Contact Details" />
+						<tab id="tab4" label="D. Address Details" />
+						<tab id="tab5" label="E. Upload Documents" />
+						<tab id="tab6" label="F. ReviewConfirm" />
+						<tab id="tab7" label="G. Declaration"></tab>
+					</tabs>
+					<tabpanels>
+						<!-- Account Selection -->
+						<tabpanel id="tab1panel">
+							<div class="form-section">
+								<div class="section-title">
+									Account Type Selection
+								</div>
+								<grid>
+									<rows>
+										<row>
+											<label
+												value="Select Account Type :" />
+
+											<checkbox id="chk1"
+												label="Savings" />
+
+											<checkbox id="chk2"
+												label="Current" />
+
+										</row>
+										<row>
+											<label
+												value="Select Add On Products :" />
+											<checkbox id="creditCard"
+												label="Credit Card" />
+											<checkbox
+												label="Health Insurance" />
+											<checkbox label="Demat A/c" />
+										</row>
+										<row align="left">
+											<label></label>
+											<checkbox
+												label="Term Deposit" />
+											<checkbox label="PPF" />
+										</row>
+									</rows>
+								</grid>
+
+							</div>
+							<div class="">
+								<button label="Next" class="next-btn"
+									id="accounselectionnext" />
+
+								<label id="lblerror1" visible="false"
+									style="color:red;" />
+
+							</div>
+						</tabpanel>
+						<!-- Personal Details -->
+						<tabpanel id="tab2panel">
+
+							<div class="form-section">
+
+								<div class="section-title">
+
+									Personal Information
+								</div>
+
+								<grid>
+
+									<rows>
+
+										<row>
+
+											<label value="First Name:"
+												width="120px" />
+
+											<!-- constraint="no empty:Name cannot be empty, /^[A-Za-z ]+$/:Only letters and spaces allowed"-->
+
+											<textbox id="firstNameBox"
+												width="200px" />
+
+											<label value="Middle Name:"
+												width="120px" />
+
+											<textbox id="middleNameBox"
+												width="200px">
+
+											</textbox>
+
+										</row>
+
+										<row>
+
+											<label value="Last Name:"
+												width="120px" />
+
+											<!-- constraint="no empty:Last Name cannot be empty, /^[A-Za-z ]+$/:Only letters and spaces allowed" -->
+
+											<textbox id="lastNameBox"
+												width="200px" />
+
+											<label
+												value="Date Of Birth:" width="120px" />
+
+											<datebox id="dobBox"
+												width="200px" format="dd/MM/yyyy" constraint="no empty" />
+
+										</row>
+
+										<row>
+
+											<label value="Nationality:"
+												width="120px" />
+
+											<hbox spacing="10px">
+
+												<checkbox
+													onCheck="Nationality(india, other)" id="india"
+													label="Indian" />
+
+												<checkbox
+													onCheck="Nationality(india, other)" id="other"
+													label="Others" />
+
+											</hbox>
+
+											<label
+												value="Enter Guardian Name:" width="120px" />
+
+											<!-- constraint="no empty:Name cannot be empty, /^[A-Za-z ]+$/:Only letters and spaces allowed" -->
+
+											<textbox
+												id="relativeNameBox" width="200px" />
+
+										</row>
+
+										<row>
+
+											<label value="Gender:"
+												width="120px" />
+
+											<radiogroup
+												id="genderGroup">
+
+												<hbox spacing="10px">
+													<radio label="Male" />
+
+													<radio
+														label="Female" />
+
+													<radio
+														label="Others" />
+
+												</hbox>
+
+											</radiogroup>
+
+											<label
+												value="City Of Birth:" width="120px" />
+
+											<!-- constraint="no empty:Name cannot be empty, /^[A-Za-z ]+$/:Only letters and spaces allowed" -->
+
+											<textbox id="cityOfBirthBox"
+												width="200px" />
+
+										</row>
+
+										<row>
+
+											<label
+												value="Annual Income:" width="120px" />
+
+											<!-- constraint="/^[0-9]+$/ : Please enter numbers only" -->
+											<textbox id="incomeBox"
+												width="200px" />
+											<label value="ID Proof:"
+												width="120px" />
+											<combobox id="idProofBox"
+												width="200px">
+												<comboitem
+													label="Aadhar Card" />
+												<comboitem
+													label="PAN Card" />
+												<comboitem
+													label="Voter ID" />
+												<comboitem
+													label="Passport" />
+											</combobox>
+										</row>
+										<row>
+											<label value="Occupation: "
+												width="120px" />
+											<textbox id="Occupation"
+												width="200px" />
+											<label value="ID Number: "
+												width="120px" />
+											<textbox id="Idnumber"
+												placeholder="XXXX XXXX XXXX" width="200px" />
+										</row>
+									</rows>
+								</grid>
+							</div>
+							<div class="account_account_nav-buttons">
+								<button label="Previous"
+									class="prev-btn" onClick="tabbox1.setSelectedTab(tab1)" />
+								<button label="Next" class="next-btn"
+									id="personaldetail" />
+								<label id="lblerror2" visible="false"></label>
+							</div>
+						</tabpanel>
+						<!-- Contact Details -->
+						<tabpanel id="tab3panel">
+							<div class="form-section">
+								<div class="section-title">
+									Contact Information
+								</div>
+								<grid>
+									<rows>
+										<row>
+											<div>
+												<label
+													value="Mobile Number: " width="120px" />
+												<inputgroup>
+													<combobox
+														id="countryBox" width="120px" mold="rounded">
+
+														<comboitem
+															label="🇮🇳(+91)" value="+91" />
+
+														<comboitem
+															label="🇺🇸(+1)" value="+1" />
+
+														<comboitem
+															label="🇬🇧(+44)" value="+44" />
+
+														<comboitem
+															label="🇨🇦(+1)" value="+1" />
+
+														<comboitem
+															label="🇦🇺(+61)" value="+61" />
+
+														<comboitem
+															label="🇩🇪(+49)" value="+49" />
+
+														<comboitem
+															label="🇫🇷(+33)" value="+33" />
+
+														<comboitem
+															label="🇯🇵(+81)" value="+81" />
+
+														<comboitem
+															label="🇧🇷(+55)" value="+55" />
+
+														<comboitem
+															label="🇿🇦(+27)" value="+27" />
+
+													</combobox>
+													<longbox
+														id="mobileNumber" width="200px" maxlength="10"
+														placeholder="Enter number" />
+												</inputgroup>
+											</div>
+											<div>
+												<label value="Email: "
+													width="120px" />
+												<textbox id="email"
+													placeholder="abcd@gmail.com" width="320px" />
+											</div>
+										</row>
+									</rows>
+								</grid>
+							</div>
+							<div class="account_account_nav-buttons">
+								<button label="Previous"
+									class="prev-btn" />
+								<button label="Next" class="next-btn"
+									id="contactdetail" />
+								<label id="lblerror3" visible="false"></label>
+							</div>
+						</tabpanel>
+						<!-- Address Details -->
+						<tabpanel id="tab4panel">
+							<div class="form-section">
+								<div class="section-title">
+									Current Address
+								</div>
+								<grid>
+									<rows>
+										<row>
+											<cell colspan="3">
+												<label value="Address:"
+													width="120px" />
+												<space spacing="250px" />
+												<textbox id="addressBox"
+													width="600px" constraint="no empty" />
+											</cell>
+										</row>
+										<row>
+											<cell colspan="3">
+												<label value="Country :"
+													width="120px" />
+												<combobox id="country"
+													autodrop="true" width="200px" readonly="true"
+													autocomplete="false" />
+												<space spacing="50px" />
+												<label value="State :"
+													width="120px" />
+												<combobox id="stateBox"
+													autodrop="true" width="200px" readonly="true"
+													autocomplete="false" />
+											</cell>
+										</row>
+										<row>
+											<cell colspan="3">
+												<label
+													value="District :" width="120px" />
+												<combobox
+													id="districtBox" autodrop="true" width="200px"
+													readonly="true" autocomplete="false" />
+												<space spacing="50px" />
+												<label
+													value="City/Village :" width="120px" />
+												<combobox id="cityBox"
+													autodrop="true" width="200px" readonly="true"
+													autocomplete="false" />
+												<space spacing="50px" />
+												<label
+													value="Pin No. : " width="120px" />
+												<intbox id="pin"
+													width="200px" maxlength="6" />
+											</cell>
+										</row>
+									</rows>
+								</grid>
+							</div>
+							<div class="form-section">
+								<div class="section-title">
+									Permanent Address
+								</div>
+								<checkbox id="sameAsCurrent"
+									label="Same As Current Address" />
+								<separator spacing="10px" />
+								<grid>
+									<rows>
+										<row>
+											<cell colspan="3">
+												<label value="Address:"
+													width="120px" />
+												<space spacing="250px" />
+												<textbox
+													id="peraddressBox" width="600px" />
+											</cell>
+										</row>
+										<row>
+											<cell colspan="3">
+												<label
+													value="City/ Village : " width="120px" />
+												<combobox id="percity"
+													width="200px" readonly="true" />
+												<space spacing="200px" />
+												<label
+													value="District : " width="120px" />
+												<combobox
+													id="perdistrict" width="350px" readonly="true" />
+											</cell>
+										</row>
+										<row>
+											<cell colspan="3">
+												<label value="State : "
+													width="120px" />
+												<combobox id="perstate"
+													width="200px" readonly="true" />
+												<space spacing="50px" />
+												<label
+													value="Pin No. : " width="120px" />
+												<intbox id="perpin"
+													width="200px" maxlength="7" />
+												<space spacing="50px" />
+												<label
+													value="Country Name : " width="120px" />
+												<combobox
+													id="percountry" width="170px" readonly="true" />
+											</cell>
+										</row>
+									</rows>
+								</grid>
+							</div>
+							<div class="account_account_nav-buttons">
+								<button label="Previous"
+									class="prev-btn" id="addressdetail" />
+								<button label="Next" class="next-btn"
+									id="addressdetailnext" />
+								<label id="lblerror4" visible="false"></label>
+							</div>
+						</tabpanel>
+						<!-- Upload Documents -->
+						<tabpanel id="tab5panel">
+							<div class="form-section">
+								<div class="section-title">
+									Document Upload
+								</div>
+								<div class="upload-section">
+									<div class="upload-item">
+										<button id="uploadBtn"
+											upload="true,maxsize=200" label="Upload Picture" />
+										<label
+											style="font-size:12px;color:red;display:block;margin-top:8px">
+											Image Size Max: 200 kb
+										</label>
+										<div id="displayDiv"></div>
+									</div>
+									<div class="upload-item">
+										<button id="uploadBtn1"
+											upload="true,maxsize=200" label="Upload Aadhar" />
+										<label
+											style="font-size:12px;color:red;display:block;margin-top:8px">
+											PDF Size Max: 200 kb
+										</label>
+										<div id="aadharDiv"></div>
+									</div>
+									<div class="upload-item">
+										<button id="uploadBtn2"
+											upload="true,maxsize=200" label="Upload Pan Card" />
+										<label
+											style="font-size:12px;color:red;display:block;margin-top:8px">
+											PDF Size Max: 200 kb
+										</label>
+										<div id="panDiv"></div>
+									</div>
+								</div>
+							</div>
+							<div class="account_account_nav-buttons">
+								<button label="Previous"
+									class="prev-btn" />
+								<button label="Next" class="next-btn"
+									id="uploaddoc" />
+								<label id="lblerror5" visible="false"></label>
+							</div>
+						</tabpanel>
+						<!-- Form Review Section -->
+						<tabpanel id="tab6panel">
+							<div class="form-section">
+								<div class="section-title">
+									Review Your Information
+								</div>
+								<grid>
+									<rows>
+										<row>
+											<label value="Full Name:"
+												width="150px" />
+											<label id="reviewName" />
+										</row>
+										<row>
+											<label
+												value="Date of Birth:" width="150px" />
+											<label id="reviewDob" />
+										</row>
+										<row>
+											<label value="Gender:"
+												width="150px" />
+											<label id="reviewGender" />
+										</row>
+										<row>
+											<label
+												value="Mobile Number:" width="150px" />
+											<label id="reviewMobile" />
+										</row>
+										<row>
+											<label value="Email:"
+												width="150px" />
+											<label id="reviewEmail" />
+										</row>
+										<row>
+											<label value="Address:"
+												width="150px" />
+											<label id="reviewAddress" />
+										</row>
+										<row>
+											<label value="Account Type:"
+												width="150px" />
+											<label
+												id="reviewAccountType" />
+										</row>
+									</rows>
+								</grid>
+							</div>
+							<div class="account_account_nav-buttons">
+								<button label="Previous"
+									class="prev-btn" onClick="tabbox1.setSelectedTab(tab5)" />
+								<button label="Next" class="next-btn"
+									id="fromreview" />
+								<label id="lblerror6" visible="false"></label>
+							</div>
+						</tabpanel>
+						<!-- Declaration -->
+						<tabpanel id="tab7panel">
+							<div class="form-section">
+								<div class="section-title">
+									Declaration
+								</div>
+								<div class="declaration-text">
+									<checkbox id="declaration"
+										label="I hereby declare that all the information provided in this Account Opening Form is true, complete, and correct to the best
+	of my knowledge and belief. I confirm that I have selected the appropriate account type and provided accurate personal, 
+	contact, and address details. I acknowledge that the documents uploaded (including ID proof, Aadhar, PAN) are genuine and belong to 
+	me. I also confirm that my mobile number and email ID are valid and can be used for official communication.
+	I understand that any misrepresentation or false information may lead to rejection of the account opening request or 
+	closure of the account. I authorize the bank to validate the submitted documents and information through appropriate 
+	channels. I accept all terms and conditions of the bank related to account operations, KYC compliance, and service usage." />
+								</div>
+							</div>
+							<div class="form-section">
+								<div class="captcha-container">
+									<hbox
+										style="border:2px solid #dee2e6; margin:auto; width:200px; height:50px;">
+										<captcha id="cpa" length="5"
+											width="200px" height="50px" />
+									</hbox>
+									<hbox
+										style="margin:15px auto; justify-content:center; align-items:center">
+										<label>Enter Captcha</label>
+										<image src="/Images/Captcha.png"
+											width="24px" height="24px" onClick="cpa.randomValue()"
+											style="margin-left:10px; cursor:pointer;" />
+									</hbox>
+									<hbox
+										style="margin:15px auto; justify-content:center">
+										<textbox id="captchaInput"
+											width="200px" />
+									</hbox>
+								</div>
+							</div>
+							<div class="account_account_nav-buttons">
+								<button label="Previous"
+									class="prev-btn" onClick="tabbox1.setSelectedTab(tab6)" />
+								<button width="150px">Cancel</button>
+								<button id="submit" label="Submit"
+									width="150px" />
+							</div>
+						</tabpanel>
+					</tabpanels>
+				</tabbox>
+			</center>
+		</borderlayout>
+	</div>
+	<zscript>
+	public void Nationality(Checkbox source, Checkbox other) {
+		if (source.isChecked()) {
+			other.setChecked(false);
+
+		}
+	}
+	private boolean validateNationality() {
+		return india.isChecked() || other.isChecked();
+	}
+</zscript>
+</zk>

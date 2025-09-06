@@ -1,0 +1,87 @@
+<?page title="Pin Generation" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<style>
+		.pin-container {
+			width: 100%;
+			max-width: 400px;
+			margin: 50px auto;
+			padding: 30px;
+			border: 1px solid #e0e0e0;
+			border-radius: 12px;
+			background-color: #ffffff;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+		}
+
+		.pin-container label {
+			font-weight: 600;
+			margin-bottom: 6px;
+			display: block;
+			color: #333;
+		}
+
+		.pin-input {
+			width: 100%;
+			padding: 8px;
+			font-size: 14px;
+			border-radius: 6px;
+			border: 1px solid #ccc;
+			margin-bottom: 16px;
+		}
+
+		.btn-primary {
+			background-color: #007bff;
+			color: #fff;
+			border: none;
+			border-radius: 6px;
+			padding: 8px 16px;
+			font-size: 14px;
+			cursor: pointer;
+			transition: background-color 0.3s ease;
+		}
+
+		.btn-primary:hover {
+			background-color: #0056b3;
+		}
+
+		.btn-secondary {
+			background-color: #6c757d;
+			color: #fff;
+			border: none;
+			border-radius: 6px;
+			padding: 8px 16px;
+			font-size: 14px;
+			cursor: pointer;
+			transition: background-color 0.3s ease;
+		}
+
+		.btn-secondary:hover {
+			background-color: #545b62;
+		}
+
+		@media (max-width: 480px) {
+			.pin-container {
+				margin: 20px;
+				padding: 20px;
+			}
+		}
+	</style>
+
+	<div  apply="com.sdp.cards.CardPinGenaration" sclass="pin-container">
+		
+		<label>Card Number :</label>
+		<textbox id="cardnumber" sclass="pin-input"/>
+
+		<label>New Pin :</label>
+		<textbox id="newpin" type="password" maxlength="4" constraint="/[0-9]{4}/: Please enter exactly 4 digits" sclass="pin-input"/>
+			
+		<label>Confirm Pin :</label>
+		<textbox id="conpin" type="password" maxlength="4" constraint="/[0-9]{4}/: Please enter exactly 4 digits" sclass="pin-input"/>
+		
+		<hbox pack="center" spacing="150px">
+			<button id="pinsubmit" label="Submit" sclass="btn-primary"/>
+			<button id="pincancel" label="Cancel" sclass="btn-secondary"/>
+		</hbox>
+		
+	</div>
+</zk>

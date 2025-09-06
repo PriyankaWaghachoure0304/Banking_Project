@@ -1,0 +1,189 @@
+<?page title="accountDetails" contentType="text/html;charset=UTF-8"?>
+<zk>
+
+
+<style>
+
+
+/* Main window background */
+.check-head {
+    width: 700px;
+    border: 1px solid #d1e0e0;
+    border-radius: 20px;
+    padding: 30px;
+    background-color: #ffffff;
+    box-shadow: 0 8px 16px rgba(0, 102, 153, 0.2);
+}
+
+/* Form container */
+.check-container {
+    display: grid;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    background-color: #f0f8ff;
+    border-radius: 15px;
+}
+
+/* Labels */
+.check-label {
+    font-weight: 600;
+    font-size: 16px;
+    color: #003366;
+}
+
+/* Input */
+longbox {
+    width: 300px;
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #a0c4ff;
+    background-color: #ffffff;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+}
+
+/* Button style */
+.check1 {
+    width: 150px;
+    padding: 5px;
+    color: #ffffff;
+    font-weight: bold;
+    border-radius: 8px;
+    border: none;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: #004d80;
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+/* Results grid */
+.result-grid {
+    margin-top: 30px;
+    background-color: #e6f2ff;
+    border: 1px solid #99ccff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 6px 12px rgba(0, 102, 153, 0.15);
+}
+
+.result-grid label {
+    font-size: 14px;
+    color: #003366;
+}
+
+.z-window-header .z-window-title {
+    width: 200px;
+    text-align: center;
+    font-size: 70px;
+    font-weight: bold;
+    color: red;
+}
+
+<!-- .check-div1{
+
+padding:30px;
+width:600px;
+display:grid;
+align-items:center;
+justify-content:center;
+margin:auto;
+}
+
+.check-head{
+margin:auto;
+width:600px;
+border:2px solid black;
+} -->
+
+
+.w2 {
+    width: 100%;
+    height: 700px;
+    display: flex;
+    flex-direction: column;   /* stack main card and popup */
+    align-items: center;      /* horizontal center */
+    justify-content: center;  /* vertical center */
+   background: hsla(189, 74%, 43%, 1);
+
+background: linear-gradient(90deg, hsla(189, 74%, 43%, 1) 0%, hsla(248, 57%, 52%, 1) 100%);
+
+background: -moz-linear-gradient(90deg, hsla(189, 74%, 43%, 1) 0%, hsla(248, 57%, 52%, 1) 100%);
+
+background: -webkit-linear-gradient(90deg, hsla(189, 74%, 43%, 1) 0%, hsla(248, 57%, 52%, 1) 100%);
+
+
+
+
+.checkpin-w {
+    display: flex;              /* when visible, flex centers content */
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    border: 1px solid #aaccee;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.25);
+    padding: 20px;
+    width: 350px;
+}
+
+/* Popup form */
+.checkpin-w .form-card {
+    display: grid;
+    gap: 15px;
+    justify-items: center;
+    text-align: center;
+}
+
+</style>
+
+
+<div sclass="w2"  width="100%" height="700px"
+    id="w1"  apply="com.sdp.checkbalance.CheckBalance">
+	
+    <div sclass="check-head">
+        <div sclass="check-container">
+            <label sclass="check-label" value="Account Number:" />
+            <textbox id="accountBox" />
+            <button sclass="check1" id="check" label="CHECK BALANCE" />
+    		<!-- <button id="checkLogin">Login</button> -->
+        </div>
+
+        <div id="detail" sclass="result-grid" visible="false">
+            <grid>
+                <rows>
+                    <row>
+                        <label  sclass="check-label">Account Number:</label>
+                        <label  sclass="check-label">Customer Name:</label>
+                        <label  sclass="check-label">Available Balance:</label>
+                    </row>
+                    <row>
+                        <label id="cAccount"/>
+                        <label id="cName"/>
+                        <label id="cBalance"/>
+                    </row>
+                </rows>
+            </grid>
+        </div>
+    </div>
+<div id="checkpin_w" visible="false" sclass="checkpin-w"  >
+    <div sclass="main-container">
+      <div sclass="form-card">
+        <label value="Enter Password" />
+        <textbox id="password" type="password" />
+        <button id="submit" label="Confirm" />
+      </div>
+    </div>
+    
+    
+</div>
+</div>
+
+
+
+
+</zk>

@@ -1,0 +1,171 @@
+<?page title="Debit Card Payment" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<style>
+		
+
+		.payment-container {
+			<!-- width:100%; -->
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			<!-- margin: 60px auto; -->
+			background: #fff;
+			border-radius: 16px;
+			
+			padding: 35px 40px;
+		}
+
+		/* Grid layout for labels + inputs */
+		.form-grid {
+			display: grid;
+			grid-template-columns: 180px 1fr; /* label fixed width + input full */
+			grid-row-gap: 12px;  /* gap between rows */
+			grid-column-gap: 15px; /* gap between label  input */
+			align-items: center;
+		}
+
+		.form-grid label {
+			font-size: 14px;
+			color: #222;
+			font-weight: 600;
+			text-align: left;
+		}
+
+		.form-grid textbox,
+		.form-grid intbox,
+		.form-grid doublebox {
+			width: 100%;
+			padding: 10px 12px;
+			border: 1px solid #d1d5db;
+			border-radius: 8px;
+			font-size: 14px;
+			transition: border-color 0.3s, box-shadow 0.3s;
+		}
+
+		.form-grid textbox:focus,
+		.form-grid intbox:focus,
+		.form-grid doublebox:focus {
+			border-color: #004aad;
+			box-shadow: 0 0 6px rgba(0, 74, 173, 0.3);
+			outline: none;
+		}
+
+		/* Button row */
+		.button-row {
+			margin-top: 25px;
+			text-align: center;
+		}
+
+		.payment-container button {
+			background: #004aad;
+			color: #fff;
+			border: none;
+			border-radius: 8px;
+			padding: 12px 18px;
+			font-size: 15px;
+			cursor: pointer;
+			width: 100%;
+			font-weight: 600;
+			box-shadow: 0 4px 10px rgba(0, 74, 173, 0.3);
+			transition: background 0.3s, transform 0.2s;
+		}
+
+		.payment-container button:hover {
+			background: #003080;
+			transform: translateY(-2px);
+		}
+
+		/* Popup styling */
+		
+		
+		<!-- .modal-overlay {
+			    position: fixed;
+			    top: 0;
+			    left: 0;
+			    width: 100%;
+			    height: 100%;
+			    background: rgba(0,0,0,0.5);
+			    z-index: 9998;
+			}  -->
+			
+<!-- 			.pay.z-popup-content {
+			    z-index: 9999 !important;
+			    border-radius: 12px;
+			    position: fixed !important; /* viewport fixed */
+			    top: 50% !important;
+			    left: 50% !important;
+			    transform: translate(-50%, -50%) !important; /* true center */
+			    box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+			} -->
+
+			.pop-cont{
+				position:fixed;
+				top: calc(50% - 73px);
+			    left: calc(50% - 150px);
+			   
+			}
+			
+			
+		.pay{
+			padding:30px;
+			box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+		}
+		
+		
+	</style>
+
+	<div apply="com.sdp.cards.PayWithDebitCard" sclass="payment-container">
+	
+	<div sclass="pay">
+	
+		<div sclass="form-grid">
+			<label value="Your Card Number:"/>
+			<textbox id="senderCardNumber"/>
+
+			<label value="Card Holder Name"/>
+			<textbox id="holderName" placeholder="Full Name"/>
+
+			<label value="Card Number"/>
+			<textbox id="reciverCardNumber" placeholder="**** **** **** ****"/>
+
+			<label value="Expiry (MM/YY)"/>
+			<textbox id="expiry" placeholder="MM / YY"/>
+
+			<label value="CVV"/>
+			<intbox id="cvvnum" placeholder="***"/>
+		</div>
+
+		<div class="button-row">
+			<button label="Verify" id="verify"/>
+		</div>
+		<separator spacing="15px"/>
+		<div sclass="form-grid">
+			<label id="amountlabel" value="Amount" visible="false"/>
+			<doublebox id="amountBox" visible="false"/>
+
+			<label id="remarkLabel" value="Remark" visible="false"/>
+			<textbox id="remark" visible="false"/>
+		</div>
+
+		<div class="button-row">
+			<button label="Pay" id="payButton" visible="false"/>
+		</div>
+		
+		
+		<div sclass="pop-cont">
+			<popup id="pinPopup" width="300px" height="150px"
+				>
+				<vlayout spacing="15px"
+					style="padding:20px; text-align:center;">
+					<label value="Enter 4 Digit Card Pin" />
+					<textbox id="cardPin" type="password" width="150px" />
+					<button label="Submit" id="submit"
+						sclass="form-button" />
+				</vlayout>
+			</popup>
+		
+		</div>
+		
+		</div>
+	</div>
+</zk>

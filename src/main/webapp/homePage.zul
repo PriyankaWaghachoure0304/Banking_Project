@@ -1,0 +1,532 @@
+<?page title="SDP Horizon Bank" contentType="text/html;charset=UTF-8"?>
+<?component name="app-footer" macroURI="/WEB-INF/components/footer.zul"?>
+<zk>
+
+    
+<html><![CDATA[
+
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+          crossorigin="anonymous"/>
+    ]]></html>
+<style>
+<!-- @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;display=swap'); -->
+	.main-header{
+			position:sticky;
+			top:0;
+			z-index:100;
+
+		} 
+		
+		<!-- .z-label{
+			font-family: "Poppins", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+		} -->
+		
+	.body-content{
+		<!-- padding:20px; -->
+	}
+		
+	.content{
+		
+	
+	}
+	
+	
+	.main-footer{
+		<!-- margin-top:10px;
+		position:absolute;
+		bottom:0; -->
+	 
+	} 
+	
+	.slider{
+		display:flex;
+		align-items:center;
+		justify-content:center;
+		 background-color: rgba(0, 0, 255, 0.1);
+		 
+	}
+	
+	.carousel-inner img{
+		
+		height:434px;
+		width:350px;
+		
+		
+	}
+	
+	.slider_inner{
+		
+		  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
+
+		
+		
+	}
+	
+	
+
+
+
+	.ad_container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #f2f7fa;
+            border-radius: 10px;
+            
+            padding: 30px;
+            width: 100%;
+           <!--  margin: 20px auto; -->
+            margin: 20px auto 40px auto;
+        min-height: 250px;            
+            
+        }
+
+        .ad-text {
+            width: 55%;
+        }
+
+        .ad-text h4 {
+            font-size: 14px;
+            font-weight: normal;
+            letter-spacing: 2px;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .ad-text h2 {
+            font-size: 28px;
+            font-weight: bold;
+            color: #222;
+            margin: 10px 0;
+        }
+
+        .ad-text p {
+            font-size: 14px;
+            color: #444;
+            margin-bottom: 20px;
+        }
+
+        .ad-btn {
+            background-color: #0065c3;
+            color: #fff;
+            font-weight: bold;
+            border: none;
+            border-radius: 6px;
+            padding: 10px 18px;
+            cursor: pointer;
+        }
+
+        .ad-btn:hover {
+            background-color: #004c99;
+        }
+
+		.ad-image{
+			width:400px;
+			height:200px;
+		}
+        .ad-image img {
+            max-width: 350px;
+            border-radius: 12px;
+        }
+        
+        .scanner{
+        	position:fixed;
+        	top:80%;
+        	left:27px;
+        	z-index:104;
+        	background-color: #004aad;
+        	cursor:pointer;
+        	border-radius:50%;
+        	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+        	  transition: box-shadow 0.3s ease, transform 0.3s ease;
+        }
+        
+        .scanner:hover{
+        	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.35);
+        }
+        
+        .chat_div{
+        	
+        	position:fixed;
+        	top:78px;
+        	right:27px;
+        	z-index:104;
+        }
+        
+        .chatbot_container{
+        	position:fixed;
+        	right:30px;
+        	top:80%;
+        	width:70px;
+        	height:70px;
+        	border-radius:50%;
+        	cursor:pointer;
+        	z-index:105;
+        	 box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+        	  transition: box-shadow 0.3s ease, transform 0.3s ease;
+        }
+        
+        .chatbot_container:hover {
+			  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.35);          /* Intensified shadow on hover */
+			}
+        
+        .chatbot_img{
+        	width:70px;
+        	height:70px;
+        	border-radius:50%;
+        	
+        }
+        
+        .chat-container {
+            border: 1px solid #ccc;
+            border-radius: 12px;
+            padding: 10px;
+            height: 420px;
+            background: #f9f9f9;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+        }
+        .chat-area {
+            flex: 1;
+            overflow-y: auto;
+            padding: 6px;
+        }
+        .chat-row {
+            display: flex;
+            margin: 6px 0;
+        }
+        .chat-row.left {
+            justify-content: flex-start;
+        }
+        .chat-row.right {
+            justify-content: flex-end;
+        }
+        .bubble {
+            border-radius: 18px;
+            padding: 10px 14px;
+            max-width: 75%;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .bubble-user {
+            background: #ffffff;
+            color: #111;
+        }
+        .bubble-bot {
+            background: linear-gradient(135deg, #4A90E2, #0052cc);
+            color: #fff;
+        }
+        .bubble-question {
+            background: #eef3ff;
+            color: #0a2e65;
+            border: 1px solid #d6e2ff;
+            cursor: pointer;
+        }
+        .bubble-question:hover {
+            background: #e2ecff;
+        }
+        .chat-footer {
+            font-size: 10px;
+            color: #ccc;
+            margin-top: 4px;
+        }
+        .chat-input {
+            border-radius: 6px;
+            padding: 6px;
+        }
+        .chat-button {
+            border-radius: 6px;
+            background: #007bff;
+            color: white;
+            font-weight: bold;
+            border: none;
+            transition: background 0.3s;
+        }
+        .chat-button:hover {
+            background: #0056b3;
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        .hii_container{
+        	position:fixed;
+			top:76%;
+			right: 7%;
+			background-color:white;
+			border-radius:4px;
+			z-index:106;
+			padding:2px;
+			
+        }
+        
+        
+        
+			        @keyframes typing {
+			  from { width: 0; }
+			  to { width: 39px; } /* "Hiiiiii" = 6 characters */
+			}
+			
+			
+			
+			.hii {
+			
+			  display: inline-block;
+			  font-size: 20px;
+			  font-weight: bold;
+			  white-space: nowrap;
+			  overflow: hidden;
+			  width: 0;
+			  animation: typing 1s steps(30) forwards;
+			}
+			
+			
+			<!-- .messages{
+			
+				width:600px;
+				height:400px;
+				position: relative;
+				top:0;
+				right:0;
+				
+			} -->
+			
+			<!-- .n_popup_container{
+				height:60px;
+				position:absolute;
+				bottom:0;
+				right:10%;
+				z-index:100;
+				 transition: bottom 0.5s ease-in-out;
+			} -->
+			
+			<!-- .n_popup_container .show {
+    				bottom: 0; /* slides up */
+				} -->
+			
+			
+       <!--  .msg_container{
+	        position: fixed;
+	        top:0;
+	        right:0;
+	        border:2px solid red;
+	        width:600px;
+	        height:200px;
+	        padding:10px;
+	        
+        } -->
+        
+        
+        
+        .z-messagebox-window {
+      
+        border-radius:20px;
+        	
+        	}
+        	
+         .z-messagebox-window .z-window-header{
+         	display:none;
+         }
+        
+        
+        .z-messagebox-window .z-window-content {
+    padding: 41px 0 16px;
+    height: 179px;
+}
+        
+		
+        
+    
+	
+</style>
+
+
+
+
+		<div id="home" sclass="homepage" width="100%" apply="com.sdp.controller.HomePage" >
+		
+		
+		<div id="main_head" sclass="main-header">
+		
+			<include id="header_include" src="/header.zul"/>
+		</div>
+		<label id="userProfile"/>
+		
+		
+		<div sclass="msg_container">
+		<popup width="50%" sclass="messages" id="notification_messages">
+		<div style="display:flex; align-items:center; justify-content:center; margin:10px 20px;"><label value="Notification" style="font-weight:bold; font-size:16px;"/></div>
+		<listbox id="notif_listbox" height="300px">
+			
+		
+			<listhead>
+				<listheader><label value="Message"/></listheader>
+				<listheader><label value="Date &amp; Time"/></listheader>
+			</listhead>
+			
+			<template name="model">
+			
+			<listitem>
+				<listcell><label value="${each.message }"/></listcell>
+				<listcell><label value="${each.dateTime }"/></listcell>
+			</listitem>
+			
+			</template>
+		</listbox>
+		
+		</popup>
+		
+		
+		
+		</div>
+		
+		
+		
+		
+		
+		
+		
+		<div sclass="body-content" id="body_content" >
+		<div id="slider" sclass="slider">
+		
+		
+			<div sclass="slider_inner" height="434px" width="100%;" >
+		    <html><![CDATA[
+				<div id="carouselExampleIndicators"  class="carousel slide" data-bs-ride="carousel">
+				<div class="carousel-indicators">
+				  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+				  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+				  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+				</div>
+				<div class="carousel-inner" >
+				  <div class="carousel-item active">
+				    <img src="./Images/bank3.webp" class="d-block w-100" alt="...">
+				  </div>
+				  <div class="carousel-item">
+				    <img src="./Images/bank4.png" class="d-block w-100" alt="...">
+				  </div>
+				  <div class="carousel-item">
+				    <img src="./Images/slider3.jpeg" class="d-block w-100" alt="...">
+				  </div>
+				</div>
+				<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+				  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				  <span class="visually-hidden">Previous</span>
+				</button>
+				<button class="carousel-control-next" right:-140;" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+				  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+				  <span class="visually-hidden">Next</span>
+				</button>
+				</div>
+		    ]]></html>
+</div>
+
+		</div>
+		 <html><![CDATA[
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+          crossorigin="anonymous"></script>
+    ]]></html>
+    
+    
+    
+		<include id="content" sclass="content"/>
+		
+		
+		<div sclass="ad_container" id="ad_container">
+        <div sclass="ad-text">
+            <label >COSTCO ANYWHERE VISA® CARD BY SDP Horizon</label>
+            <separator/>
+            <label style="font-size:30px;font-weight:bold;">Go Big with Cash Back Rewards</label>
+            <separator/>
+            <label>
+                Earn cash back rewards on all of your purchases, wherever Visa is accepted,
+                including 2% on all purchases from Costco Warehouses and Costco.com.
+            </label>
+            <separator></separator>
+            <button sclass="ad-btn">Learn More</button>
+        </div>
+
+        <div sclass="ad-image">
+            <image src="/Images/personalloan.webp" />
+        </div>
+    </div>
+		
+		</div>
+		
+		
+		
+		
+		
+			<div id="scan" sclass="scanner">
+								<image sclass="chatbot_img" src="/Images/qr-code.gif"/>
+		
+			</div>
+		
+	
+		
+		
+		
+		
+		<div id="chat_div" sclass="chat_div" visible="false"  width="500px" height="800px"
+            apply="com.sdp.chatbot.ChatClientUIController">
+
+        <vlayout height="700px">
+           
+           
+
+            <!-- Chat container (hidden initially) -->
+            <div id="chatContainer" sclass="chat-container">
+                <vlayout id="chatArea" vflex="1" hflex="1" sclass="chat-area"/>
+                <separator/>
+                <hlayout spacing="25%" >
+                    <textbox id="userInput" width="120%" placeholder="Type your question number here..."
+                             sclass="chat-input"/>
+                    <button id="sendBtn" label="Send" sclass="chat-button"/>
+                </hlayout>
+            </div>
+        </vlayout>
+    </div>
+		
+		
+		<div id="hii_container" visible="false">
+			<label id="hii" sclass="hii" value="Hii!"/>
+		</div>
+					    <div id="chatbot_container" sclass="chatbot_container">
+								<image sclass="chatbot_img" src="/Images/chatbot.png"/>
+		
+						</div>
+		
+		
+		
+	
+
+		
+		
+		
+		<div sclass="n_popup_container" id="pop_con">
+		
+		<popup id="notification_popup">
+			<label id="msg_container" style="color: red;font-size:17px; font-weight:bold;"/>
+		
+			<button id="ok">OK</button>
+		
+		</popup>
+		</div>
+		
+		
+		
+		<div sclass="main-footer">
+			<app-footer/>
+		</div>
+		</div>
+		
+		
+		</zk>

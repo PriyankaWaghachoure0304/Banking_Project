@@ -1,0 +1,189 @@
+<?link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"?>
+
+<zk>
+
+
+    <style>
+        .footer {
+            background-color: #0c0f3d;
+            color: #ffffff;
+            padding: 30px 40px;
+            font-size: 13px;
+            
+        }
+
+        .footer a {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 5px 0;
+            line-height: 30px;
+            font-weight:bold;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.5s ease, color 0.5s ease, font-weight 0.5s ease;
+        }
+
+        .footer a:hover {
+           	border-bottom:2px solid white;
+            font-weight:800;
+            color:white;
+           
+        }
+
+        .footer-section {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+         .footer-right {
+            flex: 1;
+            margin: 10px;
+        }
+        .footer-left{
+        	width:20%;
+        	
+        }
+       .footer-middle{
+       		flex: 1;
+            margin: 10px;
+            color:gray;
+       }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 15px;
+            margin-top: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+        }
+
+        .social-icons {
+            width:300px;
+            font-size: 18px;
+            margin-right: 10px;
+            cursor: pointer;
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+        }
+
+        .footer-divider {
+            border-left: 2px solid #333;
+            height: 120px;
+            margin: 0 20px;
+        }
+        .facebookbtn{
+        background-color:transparent;
+        border:2px solid white;
+        color: #f7f7f8;
+        height:40px;
+        width:40px;
+        border-radius:5px;
+      
+        }
+        .twitterbtn{
+        color: #f5f7fa;
+         background-color:transparent;
+        border:2px solid white;
+        height:40px;
+        width:40px;
+        border-radius:5px;
+     
+        }
+        .linkedinbtn{
+        color: #fcfcfd;
+         background-color:transparent;
+        border:2px solid white;
+        height:40px;
+        width:40px;
+        border-radius:5px;
+      
+        }
+        .youtubebtn{
+         color: #fcfcfc;
+         background-color:transparent;
+        border:2px solid white;
+        height:40px;
+        width:40px;
+        border-radius:5px;
+   
+        }
+        .instabtn{
+        	color: #f9fafa;
+         background-color:transparent;
+        border:2px solid white;
+        height:40px;
+        width:40px;
+        border-radius:5px;
+       
+        }
+    </style>
+
+   
+
+
+
+
+
+
+
+    <div sclass="footer">
+        <div sclass="footer-section">
+            <div sclass="footer-left">
+                <a sclass="font-bold">ATMs and Branches</a>
+                <separator/>
+                <a sclass="font-bold">Careers</a>
+                <separator/>
+                <a sclass="font-bold">Foundation</a>
+                <separator/>
+                <a sclass="font-bold">Contact Us</a>
+                <separator/>
+                <a sclass="font-bold">Security Center</a>
+            </div>
+
+            <div sclass="footer-divider"></div>
+
+            <div sclass="footer-middle">
+                <label>This credit union is federally insured by the National Credit Union Administration.</label>
+                <label>Rates are current as of August 2025 unless otherwise noted and are subject to change.</label>
+                <separator/>
+                <label>APY = Annual Percentage Yield</label>
+                <separator/>
+                <label>APR = Annual Percentage Rate</label>
+            </div>
+
+            <div sclass="footer-divider"></div>
+
+            <div sclass="footer-right">
+                <div sclass="social-icons">
+                    <button id="facebookBtn" tooltiptext="FaceBook" href="https://en.wikipedia.org/wiki/Facebook"
+                        zclass="facebookbtn" iconSclass="z-icon-brands z-icon-facebook-f z-icon-xl" />
+                    <button zclass="twitterbtn" tooltiptext="Twitter" href="https://twitter.com/"
+                        iconSclass="z-icon-brands z-icon-x-twitter z-icon-xl" />
+                    <button zclass="linkedinbtn" tooltiptext="LinkeDin" href="https://in.linkedin.com/"
+                        iconSclass="z-icon-brands z-icon-linkedin-in z-icon-xl " />
+                    <button zclass="youtubebtn" tooltiptext="YouTube" href="https://www.youtube.com/"
+                        iconSclass="z-icon-brands z-icon-youtube z-icon-lg" />
+                    <button zclass="instabtn" tooltiptext="Instagram" href="https://www.instagram.com/"
+                        iconSclass="z-icon-brands z-icon-instagram z-icon-xl" />
+                </div>
+                <separator spacing="50px" />
+                <label style="margin-top: 10px;">Routing #256078446</label>
+            </div>
+        </div>
+
+        <div sclass="footer-bottom">
+            <label>©2025 Pentagon Federal Credit Union</label>
+            <hlayout spacing="20px">
+                <label>Privacy</label>
+                <label>Disclosures</label>
+                <label>Fees</label>
+                <label>Rates</label>
+                <label>Forms</label>
+                <label>Site Map</label>
+            </hlayout>
+        </div>
+    </div>
+</zk>

@@ -1,0 +1,107 @@
+<?page title="Receive Money" contentType="text/html;charset=UTF-8"?>
+<zk>
+<style>
+    .qr-container {
+    	
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        <!-- background: #fafafa; -->
+        font-family: "Segoe UI", sans-serif;
+        margin:50px;
+    }
+
+    .qr-card {
+        background: white;
+        padding: 25px;
+        border-radius: 15px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        width: 320px;
+        text-align: center;
+    }
+
+    .title {
+        font-size: 20px;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    .scan-label {
+        font-size: 16px;
+        font-weight: bold;
+        color: #6a1b9a;
+        margin-bottom: 10px;
+    }
+
+    .qr-wrapper {
+        padding: 10px;
+        border: 2px solid #6a1b9a;
+        border-radius: 10px;
+        display: inline-block;
+        margin-bottom: 15px;
+    }
+
+    .upi-id {
+        font-size: 14px;
+        color: #555;
+        margin-top: 5px;
+    }
+
+    .copy-btn {
+        margin-top: 12px;
+        background-color: #6a1b9a;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        padding: 8px 16px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .copy-btn:hover {
+        background-color: #4a148c;
+    }
+    .qr_container{
+    	
+    	width:100%;
+    }
+    
+    .qrbtnContainer{
+    	width:100%;
+    	height:100%;
+    	display:flex;
+    	flex-direction:column;
+    	align-items:center;
+    	justify-content:center;
+    	margin-top:10px;
+    }
+    
+</style>
+
+<div apply="com.sdp.qr.QrComposer" sclass="qr_container">
+<div sclass="qrbtnContainer">
+
+<div>
+	<button id="qrbtn" label="MyQr"/>
+</div>
+    <div id="qrcodeContainer" sclass="qr-container" visible="false">
+        <div sclass="qr-card">
+            <label value="Receive Money" sclass="title"/>
+            <separator></separator>
+            <label value="Scan And Pay" sclass="scan-label"/>
+            <separator></separator>
+            <div  sclass="qr-wrapper">
+                <barcode type="qr" id="qrcode"/>
+            </div>
+            <separator></separator>
+            <label id="upiLab" sclass="upi-id"/>
+            <separator></separator>
+            <button label="Copy UPI ID" id="copyBtn" sclass="copy-btn"/>
+        </div>
+    </div>
+</div>
+</div>
+</zk>
