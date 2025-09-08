@@ -390,6 +390,7 @@ public boolean insertdebitcard(String accno,String cardnumber,String cardholdern
 		 ps4.setString(2, cardnumber);
 		 ps4.setString(3, cardholdername);
 		 
+		 
 		return ps4.executeUpdate()>0;
 	}
 	 
