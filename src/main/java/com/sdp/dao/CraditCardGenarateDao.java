@@ -11,21 +11,21 @@ public class CraditCardGenarateDao {
 
     private static final Random random = new Random();
 
+    /**
+     * 
+     * Step 1: Set the first digit(s) as prefix (e.g., '4' for VISA, '5' for
+     * MasterCard)
+     * 
+     **/
     public String genCreditCardNumber() {
         int[] digits = new int[16];
 
-		/*
-		 * Step 1: Set the first digit(s) as prefix (e.g., '4' for VISA, '5' for
-		 * MasterCard)
-		 */
         digits[0] = 4;
 
-		/** Step 2: Generate first 14 random digits (excluding last checksum digit) **/
         for (int i = 1; i < 15; i++) {
             digits[i] = random.nextInt(10); 
         }
 
-		/* Step 3: Calculate checksum using Luhn Algorithm */
         int sum = 0; 
         for (int i = 0; i < 15; i++) {
             int digit = digits[14 - i];

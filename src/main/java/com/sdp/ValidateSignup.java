@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import org.apache.logging.log4j.core.Logger;
 import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.Listen;
@@ -15,6 +16,7 @@ import org.zkoss.zul.Intbox;
 import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Textbox;
 
+import com.sdp.apachelog4j.LoggerExample;
 import com.sdp.connection.DbConnection;
 
 public class ValidateSignup extends SelectorComposer<Div> {
@@ -27,7 +29,7 @@ public class ValidateSignup extends SelectorComposer<Div> {
 	Textbox compass;
 
 	DbConnection db = new DbConnection();
-
+	Logger logger = LoggerExample.getLogger();
 	@Listen("onOK=#cusid")
 	public void jumpToNewpass() {
 		newpass.setFocus(true);
@@ -82,6 +84,7 @@ public class ValidateSignup extends SelectorComposer<Div> {
 			}
 			if (!s2.equals(s3)) {
 				Messagebox.show("Password Does Not Match.....");
+				logger.warn("Enter Correct credentials");
 				return;
 			}
 			pstmt2.setInt(1, s1);
@@ -92,6 +95,7 @@ public class ValidateSignup extends SelectorComposer<Div> {
 
 				if (pass != null) {
 					Messagebox.show("UserName Already Exist");
+					logger.warn("Username already exist");
 					return;
 				} else {
 

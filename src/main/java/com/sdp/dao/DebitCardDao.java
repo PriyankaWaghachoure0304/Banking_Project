@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import org.apache.logging.log4j.core.Logger;
+
+import com.sdp.apachelog4j.LoggerExample;
 import com.sdp.connection.DbConnection;
 import com.sdp.model.DebitCardPojo;
 
@@ -11,9 +14,9 @@ public class DebitCardDao {
 	private static final String SELECTDEBITCARDNO = "select card_holder_name,card_number,valid_exp,cvv,pin from debit_card where account_no = ?";
 
 	DbConnection db = new DbConnection();
-	
+	Logger logger = LoggerExample.getLogger();
 	public DebitCardPojo fetchDebitcard(String accountno) {
-		
+		logger.debug("Enter in debitCard()");
 		try (Connection con = db.getConnection(); PreparedStatement ps = con.prepareStatement(SELECTDEBITCARDNO)) {
 			ps.setString(1, accountno);
 			ResultSet rs = ps.executeQuery();
@@ -29,6 +32,7 @@ public class DebitCardDao {
 				dcard.setCvv(cvv);
 				dcard.setPin(cardpin);
 				dcard.setCardHolderName(cardHolderName);
+				logger.info("Debit card generated");
 				return dcard;
 			}
 		} catch (Exception e) {

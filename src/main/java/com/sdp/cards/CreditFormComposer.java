@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.Calendar;
 import java.util.Date;
 
+import org.apache.logging.log4j.core.Logger;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.Sessions;
@@ -15,6 +16,7 @@ import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zul.*;
 
+import com.sdp.apachelog4j.LoggerExample;
 import com.sdp.connection.DbConnection;
 import com.sdp.model.User;
 
@@ -38,7 +40,7 @@ public class CreditFormComposer extends SelectorComposer<Component> {
 	@Wire
 	private Doublebox limit;
 	String accountNo;
-
+	Logger logger = LoggerExample.getLogger();
 	@Override
 	public void doAfterCompose(Component comp) throws Exception {
 		super.doAfterCompose(comp);
@@ -95,6 +97,7 @@ public class CreditFormComposer extends SelectorComposer<Component> {
 			Messagebox.show(limit.getValue()+ "Enter valid Limit");
 		} else if (limit.getValue() < 10000 || limit.getValue() > 500000) {
 			Messagebox.show(" Amount must be between 10,000 and 5,000,00");
+			logger.warn("Enter amount in given range");
 		}
 	}
 
@@ -116,6 +119,7 @@ public class CreditFormComposer extends SelectorComposer<Component> {
 				rs.next();
 				if (rs.getInt(1) == 0) {
 					Messagebox.show("Invalid Account Number. Please enter a valid one.");
+					logger.warn("Invalid account number");
 					return;
 				}
 			}

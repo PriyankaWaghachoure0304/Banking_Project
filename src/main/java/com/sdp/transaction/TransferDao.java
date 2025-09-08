@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+import org.apache.logging.log4j.core.Logger;
 import org.zkoss.zk.ui.Session;
 import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.event.Event;
@@ -17,6 +18,7 @@ import org.zkoss.zk.ui.event.EventQueue;
 import org.zkoss.zk.ui.event.EventQueues;
 import org.zkoss.zul.Messagebox;
 
+import com.sdp.apachelog4j.LoggerExample;
 import com.sdp.connection.DbConnection;
 import com.sdp.model.Notification;
 import com.sdp.model.Receipt;
@@ -26,7 +28,7 @@ import com.sdp.serialization.Serialize;
 public class TransferDao {
 
 	DbConnection db = new DbConnection();
-
+	Logger logger = LoggerExample.getLogger();
 	private static final String GET_NAME = "SELECT first_name, middle_name, last_name FROM personal_details where account_no=?";
 	private static final String FETCH_BALANCE = "SELECT balance FROM accounts WHERE account_number = ?";
 	private static final String UPDATE_BALANCE = "UPDATE accounts SET balance = ? WHERE account_number = ?";
@@ -64,12 +66,14 @@ public class TransferDao {
 			ResultSet rsFrom = fetchFrom.executeQuery();
 			if (!rsFrom.next()) {
 				Messagebox.show("Sender account does not exist.");
+				logger.warn("Account not exist");
 				return false;
 			}
 
 			double fromBalance = rsFrom.getDouble(BALANCE);
 			if (fromBalance < totalDebit) {
 				Messagebox.show("Insufficient funds.");
+				logger.warn("Insufficient funds");
 				return false;
 			}
 
@@ -77,6 +81,7 @@ public class TransferDao {
 			ResultSet rsTo = fetchTo.executeQuery();
 			if (!rsTo.next()) {
 				Messagebox.show("Recipient account does not exist.");
+				logger.warn("Account not exist");
 				return false;
 			}
 
@@ -128,12 +133,14 @@ public class TransferDao {
 			} else {
 				con.rollback();
 				Messagebox.show("Transfer failed. Please try again.");
+				logger.error("Transaction failed");
 				return false;
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
 			Messagebox.show("Error: " + e.getMessage());
+			
 			return false;
 		}
 	}

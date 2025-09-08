@@ -1,5 +1,6 @@
 package com.sdp.checkbalance;
 
+import org.apache.logging.log4j.core.Logger;
 import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.Listen;
@@ -10,6 +11,7 @@ import org.zkoss.zul.Label;
 import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Textbox;
 
+import com.sdp.apachelog4j.LoggerExample;
 import com.sdp.dao.CheckBalanceDao;
 import com.sdp.dao.MPinDao;
 
@@ -37,7 +39,8 @@ public class CheckBalance extends SelectorComposer<Div> {
 
 	@Wire
 	Div checkpin_w;
-
+	Logger logger = LoggerExample.getLogger();
+	
 	@Listen("onClick=#check")
 	public void check() {
 		checkpin_w.setVisible(true);
@@ -91,6 +94,7 @@ public class CheckBalance extends SelectorComposer<Div> {
 
 			} else {
 				Messagebox.show("Incorrect password!");
+				logger.warn("Incorrect password");
 			}
 
 		} else {

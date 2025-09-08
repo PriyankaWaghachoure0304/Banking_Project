@@ -1,5 +1,6 @@
 package com.sdp.controller;
 
+import org.apache.logging.log4j.core.Logger;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.select.SelectorComposer;
@@ -9,6 +10,7 @@ import org.zkoss.zul.Div;
 import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Textbox;
 
+import com.sdp.apachelog4j.LoggerExample;
 import com.sdp.dao.MPinDao;
 import com.sdp.model.TransferPojo;
 import com.sdp.transaction.TransferDao;
@@ -26,6 +28,7 @@ public class CheckMPinController extends SelectorComposer<Div> {
 	Div main_check_container;
 
 	transient TransferDao tDao = TransferDao.getTransferDao();
+	Logger logger = LoggerExample.getLogger();
  transient	MPinDao dao = new MPinDao();
 static final String TRANSFER="transferDetail";
 	@Override
@@ -57,7 +60,7 @@ static final String TRANSFER="transferDetail";
 
 		else {
 			Messagebox.show("Incorrect Password!");
-
+			logger.warn("Incorrect Password");
 		}
 
 	}

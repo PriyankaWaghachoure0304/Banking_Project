@@ -15,8 +15,10 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import org.apache.logging.log4j.core.Logger;
 import org.zkoss.zul.Messagebox;
 
+import com.sdp.apachelog4j.LoggerExample;
 import com.sdp.connection.DbConnection;
 import com.sdp.model.AddressDocuments;
 import com.sdp.model.PersonalDetails;
@@ -27,6 +29,7 @@ public class AccountDAO {
 	
 	DbConnection db = new DbConnection();
 	
+	Logger logger = LoggerExample.getLogger();
 	
 	private static final String INSERT_PERSONALDETAIL_SQUERY = "INSERT INTO personal_details (account_type, credit_card, first_name, middle_name, last_name, dob,"
     		+ " nationality, guardian_name, gender, city_of_birth, annual_income, id_proof, occupation, id_number,"
@@ -34,7 +37,7 @@ public class AccountDAO {
     		+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	
 	public boolean insert(PersonalDetails pd, AddressDocuments doc) {
-		
+		logger.debug("Enter in insert()");
 		
 			Connection con1 = db.getConnection();
 				Connection con2 = db.getConnection();
@@ -51,6 +54,7 @@ public class AccountDAO {
 					
 					 if(!isUniqueEmail(pd.getEmail())) {
 			            	Messagebox.show("User Already exist!");
+			            	logger.debug("Exit from insert()");
 			            	return false;
 			            }
 			
@@ -59,6 +63,7 @@ public class AccountDAO {
 				}
 				else {
 					con1.rollback();
+					logger.debug("Exit from insert()");
 					return false;
 				}
 				
@@ -69,6 +74,7 @@ public class AccountDAO {
 				else {
 					con1.rollback();
 					con2.rollback();
+					logger.debug("Exit from insert()");
 					return false;
 				}
 				
@@ -80,6 +86,7 @@ public class AccountDAO {
 				 if(cusid==0) {
 					 con1.rollback();
 					 con2.rollback();
+					 logger.debug("Exit from insert()");
 					 return false;
 				 }
 				
@@ -94,6 +101,7 @@ public class AccountDAO {
 					con1.rollback();
 					con2.rollback();
 					con3.rollback();
+					logger.debug("Exit from insert()");
 					return false;
 				}
 				
@@ -105,6 +113,7 @@ public class AccountDAO {
 					con2.rollback();
 					con3.rollback();
 					con4.rollback();
+					logger.debug("Exit from insert()");
 					return false;
 				}
 				
@@ -117,6 +126,7 @@ public class AccountDAO {
 					con3.rollback();
 					con4.rollback();
 					con5.rollback();
+					logger.debug("Exit from insert()");
 					return false;
 				}
 				
@@ -128,6 +138,7 @@ public class AccountDAO {
 				con3.close();
 				con4.close();
 				con5.close();
+				logger.debug("Exit from insert()");
 				return true;
 			
 		}
@@ -141,6 +152,7 @@ public class AccountDAO {
 				return false;
 			} catch (SQLException e1) {
 				e1.printStackTrace();
+				logger.error("Error in insert details"+e);
 			}
 			e.printStackTrace();
 			
@@ -154,6 +166,7 @@ public class AccountDAO {
 	
 
     public boolean insertPersonalDetails(PersonalDetails pd, Connection con) throws SQLException  {
+    	logger.debug("Enter in PersonalDetail()");
        try( PreparedStatement ps = con.prepareStatement(INSERT_PERSONALDETAIL_SQUERY);){
         	con.setAutoCommit(false);
             ps.setString(1, pd.getAccountType());
@@ -176,7 +189,7 @@ public class AccountDAO {
             ps.setString(18, pd.getAccountNo());
             
    
-           
+            logger.debug("Exit from PersonalDetail()");
             return ps.executeUpdate() > 0;
        
        }
@@ -184,9 +197,10 @@ public class AccountDAO {
     
     private static final String INSERTQUERY = "INSERT INTO accounts (account_number) values(?)";
     public boolean insertAccountBalance(String accountNum, Connection con) throws SQLException {
+    	logger.debug("Enter in accountBalance()");
     	try( PreparedStatement ps2 = con.prepareStatement(INSERTQUERY) ;){
     		 ps2.setString(1, accountNum);
-    		
+    		 logger.debug("Exit from accountBalance()");
 				return ps2.executeUpdate()>0;
 			
     	}
@@ -197,7 +211,7 @@ public class AccountDAO {
     
     private static final String USERSINSERTQUERY = "INSERT INTO users (full_name,email,phone_number,account_number,customer_id) values(?,?,?,?,?)";
     public boolean insertUserInfomatin(String fullname,String email,String phonenumber,int customerid,String accountNum, Connection con) throws SQLException{
-    	
+    	logger.debug("Enter in userInfo()");
 				try( PreparedStatement ps4 = con.prepareStatement(USERSINSERTQUERY);){
     		 ps4.setString(1, fullname);
     		 ps4.setString(2, email);
@@ -205,7 +219,7 @@ public class AccountDAO {
     		 ps4.setInt(5, customerid);
     		 ps4.setString(4, accountNum);
     		 
-    		
+    		 logger.debug("Exit from userInfo()");
     		 return ps4.executeUpdate()>0;
 				}
 		 
@@ -218,6 +232,8 @@ public class AccountDAO {
         		+ " current_state, current_pin, current_country, permanent_address, permanent_city, "
         		+ "permanent_district, permanent_state, permanent_pin, permanent_country, photo_path, aadhar_path,"
         		+ " pan_path, account_no) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        logger.debug("Enter in insertDocument()");
+        
         try(PreparedStatement ps = con.prepareStatement(sql);){
             ps.setString(1, doc.getCurrentAddress());
             ps.setString(2, doc.getCurrentCity());
@@ -235,6 +251,9 @@ public class AccountDAO {
             ps.setBytes(14, doc.getAadharBytes());
             ps.setBytes(15, doc.getPanBytes());
             ps.setString(16, doc.getAccountNo());
+            
+            logger.debug("Exit from insertDocument()");
+            
             return ps.executeUpdate()>0;
         }
         
@@ -255,6 +274,7 @@ public class AccountDAO {
     }
 
     public String generateAccountNumber() throws SQLException {
+    	logger.debug("Enter in generateAccountNumber()");
         try (Connection con = db.getConnection();
         		PreparedStatement ps1 = con.prepareStatement("SELECT COUNT(1) as ac FROM personal_details");
         		PreparedStatement ps = con.prepareStatement("SELECT MAX(account_no) as acc FROM personal_details");) {
@@ -267,6 +287,7 @@ public class AccountDAO {
             
             ResultSet rs = ps.executeQuery();
             rs.next();
+            logger.info("Account number is generated");
             return String.valueOf(rs.getLong("acc") + 1);
         }
     }
@@ -302,7 +323,6 @@ public class AccountDAO {
     }
     
 public void sendEmail(String toEmail, int customerid, String accno) throws MessagingException {
-	    
 	    String host = "smtp.gmail.com"; 
 	    String from = "sanvika54321@gmail.com"; 
 	    String password = "lrpk bqms wpyl mard"; 
@@ -341,9 +361,11 @@ public void sendEmail(String toEmail, int customerid, String accno) throws Messa
 	    message.setText(emailBody);
 
 	    Transport.send(message);
+	    logger.info("Email send successfully!!!");
 	}
 
 public String generateDebitCardNumber() throws SQLException  {
+	logger.debug("Enter in generateDebitCardNumber()");
     try (Connection con = db.getConnection();
     		PreparedStatement ps1 = con.prepareStatement("SELECT COUNT(1) as ac FROM debit_card");
     		PreparedStatement ps = con.prepareStatement("SELECT MAX(card_number) as acc FROM debit_card");) {
@@ -356,6 +378,7 @@ public String generateDebitCardNumber() throws SQLException  {
         
         ResultSet rs = ps.executeQuery();
         rs.next();
+        logger.debug("Exit from generateDebitCardNumber()");
         return String.valueOf(rs.getLong("acc") + 1);
     }
 }

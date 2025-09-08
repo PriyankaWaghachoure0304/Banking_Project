@@ -8,8 +8,10 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.core.Logger;
 import org.zkoss.zk.ui.Sessions;
 
+import com.sdp.apachelog4j.LoggerExample;
 import com.sdp.connection.DbConnection;
 import com.sdp.model.CreditCard;
 import com.sdp.model.CreditCard_apply;
@@ -19,9 +21,12 @@ public class CreditCardDao {
 	static final String LIMIT="limit_amount";
 	DbConnection db=new DbConnection();
 	static final String ACCNO="account_number";
+	Logger logger = LoggerExample.getLogger();
+
 	String selectWl = "SELECT full_name,request_date,account_number,limit_amount FROM credit_card_requests WHERE request_status = 'waiting' ";
 
 	public List<CreditCard_apply> fetchWL() throws SQLException {
+		logger.debug("Enter in fetch waiting list()");
 		ArrayList<CreditCard_apply> al1 = new ArrayList<>();
 		try (Connection conn = db.getConnection(); PreparedStatement ps = conn.prepareStatement(selectWl);) {
 
@@ -44,11 +49,12 @@ public class CreditCardDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		logger.debug("Exit from fetch waiting list()");
 		return al1;
 	}
 
 	public String getCreditStatus(String accountNo) {
-		
+		logger.debug("Enter in credicardStatus()");
 		    String status = null;
 		    Connection con =db. getConnection();
 			try(PreparedStatement ps = con.prepareStatement("SELECT request_status FROM credit_card_requests WHERE account_number=?");) {
@@ -57,6 +63,7 @@ public class CreditCardDao {
 				ResultSet rs = ps.executeQuery();
 				if (rs.next()) {
 					status = rs.getString("request_status");
+					logger.debug("Exit from creditcardStatus()");
 					return status;
 				}
 			} catch (Exception e) {
@@ -70,6 +77,7 @@ public class CreditCardDao {
 	String selectAlAc="SELECT account_number from credit_card_requests";
 	public String fetchAllCustomer()
 	{
+		logger.debug("Enter in all customerlist()");
 		ArrayList<CreditCard_apply> al2 = new ArrayList<>();
 		try (Connection conn = db.getConnection(); PreparedStatement ps = conn.prepareStatement(selectAlAc);) {
 
@@ -80,6 +88,7 @@ public class CreditCardDao {
 				CreditCard_apply creditcardP = new CreditCard_apply();
 				creditcardP.setAccountNumber(accNo);
 				al2.add(creditcardP);
+				logger.debug("Exit from allCustomerList()");
 				return accNo;
 			}
 
@@ -94,7 +103,7 @@ public class CreditCardDao {
 		try (Connection conn = db.getConnection(); PreparedStatement ps = conn.prepareStatement(UPDATECREDITSTATUS);) {
 			ps.setString(1, ac);
 			ps.executeUpdate();
-			
+			logger.info("Status is updated to approve");
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -105,7 +114,7 @@ public class CreditCardDao {
 		try (Connection conn = db.getConnection(); PreparedStatement ps = conn.prepareStatement(UPDATECREDITSTATUSREJECT);) {
 			ps.setString(1, ac);
 		 ps.executeUpdate();
-
+		 logger.info("Status is updated to reject");
 			
 
 		} catch (Exception e) {
@@ -131,7 +140,6 @@ public class CreditCardDao {
         try (Connection con = db.getConnection();
              PreparedStatement ps = con.prepareStatement("SELECT id,account_number,card_number,cardholder_name,cvv,exp_month, exp_year,limit_amount  FROM credit_cards WHERE account_number=? LIMIT 1")) {
 
-        	System.out.println("ps"+ps);
             ps.setString(1, accountNumber);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
@@ -144,7 +152,6 @@ public class CreditCardDao {
                 card.setExpMonth(rs.getInt("exp_month"));
                 card.setExpYear(rs.getInt("exp_year"));
                 card.setLimitAmount(rs.getDouble(LIMIT));
-                System.out.println(card);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -154,8 +161,7 @@ public class CreditCardDao {
 	
 	public List<CreditCard_apply> fetchAllApprovedUsers() throws SQLException {
 	    List<CreditCard_apply> list = new ArrayList<>();
-	    String sql = "SELECT c.account_number, c.card_number, c.cardholder_name, c.limit_amount, c.created_at " +
-	                 "FROM credit_cards c";
+	    String sql = "SELECT c.account_number, c.card_number, c.cardholder_name, c.limit_amount, c.created_at FROM credit_cards c";
 	    try (Connection conn = db.getConnection();
 	         PreparedStatement ps = conn.prepareStatement(sql);
 	         ResultSet rs = ps.executeQuery()) {

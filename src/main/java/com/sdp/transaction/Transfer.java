@@ -138,7 +138,7 @@ transient TransferPojo tPojo;
 	    }
 
 	    if (!isWithinTransferLimits(transferTypeName, amount)) {
-	        return; // error messages are handled inside validation
+	        return; 
 	    }
 
 	    createTransferPojo(amount, transferTypeName);

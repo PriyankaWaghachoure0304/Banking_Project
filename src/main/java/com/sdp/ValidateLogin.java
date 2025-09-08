@@ -1,5 +1,6 @@
 package com.sdp;
 
+import org.apache.logging.log4j.core.Logger;
 import org.zkoss.zk.ui.Execution;
 import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.event.Events;
@@ -13,6 +14,7 @@ import org.zkoss.zul.Label;
 import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Textbox;
 
+import com.sdp.apachelog4j.LoggerExample;
 import com.sdp.connection.DbConnection;
 import com.sdp.dao.AdminLoginDao;
 import com.sdp.dao.LoginDao;
@@ -45,7 +47,7 @@ public class ValidateLogin extends SelectorComposer<Div> {
 	private Button toggleEye;
 
 	transient Execution exec = org.zkoss.zk.ui.Executions.getCurrent();
-
+	Logger logger = LoggerExample.getLogger();
 	DbConnection db = new DbConnection();
 
 	@Listen("onOK=#cid")
@@ -75,6 +77,7 @@ transient	LoginDao ldao = new LoginDao();
 			exec.sendRedirect("homePage.zul");
 		} else {
 			Messagebox.show("Please Enter Valid Details!");
+			logger.warn("Enter valide credentials");
 		}
 
 	}
@@ -99,6 +102,7 @@ transient	AdminLoginDao adminDao = new AdminLoginDao();
 				Sessions.getCurrent().setAttribute("adminIslogged", true);
 			} else {
 				Messagebox.show("Invalid Admin credentials!");
+				logger.warn("Enter valide credentials");
 			}
 		} else {
 
@@ -109,6 +113,7 @@ transient	AdminLoginDao adminDao = new AdminLoginDao();
 				exec.sendRedirect("homePage.zul");
 			} else {
 				Messagebox.show("Please Enter Valid Details!");
+				logger.warn("Enter valid details");
 			}
 		}
 

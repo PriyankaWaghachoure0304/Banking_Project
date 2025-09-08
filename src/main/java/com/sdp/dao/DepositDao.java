@@ -6,20 +6,21 @@ import java.sql.ResultSet;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.apache.logging.log4j.core.Logger;
 import org.zkoss.zul.Messagebox;
 
+import com.sdp.apachelog4j.LoggerExample;
 import com.sdp.connection.DbConnection;
 
 public class DepositDao {
     DbConnection db = new DbConnection();
-
+    Logger logger = LoggerExample.getLogger();
     private static final String FETCH_USER = "SELECT balance FROM accounts WHERE account_number=?";
     private static final String UPDATE_USER = "UPDATE accounts SET balance=? WHERE account_number=?";
     
     private static final String FETCH_MASTER = "SELECT balance_after FROM bank_account WHERE account_number=?";
     private static final String UPDATE_MASTER = "UPDATE bank_account SET balance_after=? WHERE account_number=?";
     
-    // Your fixed Master Bank Account Number
     private static final String MASTER_ACC_NO = "SDP00001";
 
     public void deposit(String accNum, Double amount) {
@@ -29,9 +30,8 @@ public class DepositDao {
              PreparedStatement psMasterFetch = con.prepareStatement(FETCH_MASTER);
              PreparedStatement psMasterUpdate = con.prepareStatement(UPDATE_MASTER)) {
 
-            con.setAutoCommit(false); // ✅ Start transaction
+            con.setAutoCommit(false); 
 
-            // 1️⃣ Check User Account Balance
             psUserFetch.setString(1, accNum);
             ResultSet rsUser = psUserFetch.executeQuery();
 
@@ -41,7 +41,6 @@ public class DepositDao {
             }
             double userBalance = rsUser.getDouble("balance");
 
-            // 2️⃣ Check Master Account Balance
             psMasterFetch.setString(1, MASTER_ACC_NO);
             ResultSet rsMaster = psMasterFetch.executeQuery();
             if (!rsMaster.next()) {
@@ -55,19 +54,17 @@ public class DepositDao {
                 return;
             }
 
-            // 3️⃣ Update User Account Balance
             double newUserBalance = userBalance + amount;
             psUserUpdate.setDouble(1, newUserBalance);
             psUserUpdate.setString(2, accNum);
             psUserUpdate.executeUpdate();
 
-            // 4️⃣ Update Master Account Balance
             double newMasterBalance = masterBalance - amount;
             psMasterUpdate.setDouble(1, newMasterBalance);
             psMasterUpdate.setString(2, MASTER_ACC_NO);
             psMasterUpdate.executeUpdate();
 
-            con.commit(); // ✅ Commit Transaction
+            con.commit(); 
 
             Messagebox.show("Deposit Successful!\nDeposited: " + amount +
                             "\nNew User Balance: " + newUserBalance +
@@ -75,6 +72,8 @@ public class DepositDao {
 
         } catch (Exception e) {
             e.printStackTrace();
+            logger.error("Error In Deposit Section"+e);
+
         }
     }
     
@@ -90,6 +89,7 @@ public class DepositDao {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            logger.error("Error In Deposit Section"+e);
         }
         return accounts;
     }

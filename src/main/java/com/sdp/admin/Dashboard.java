@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+import org.apache.logging.log4j.core.Logger;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.event.Event;
@@ -25,6 +26,7 @@ import org.zkoss.zul.Include;
 import org.zkoss.zul.Label;
 import org.zkoss.zul.SimpleCategoryModel;
 
+import com.sdp.apachelog4j.LoggerExample;
 import com.sdp.connection.DbConnection;
 import com.sdp.model.Notification;
 import com.sdp.serialization.Deserialize;
@@ -73,10 +75,13 @@ public class Dashboard extends SelectorComposer<Div> implements Serializable {
 
     static final String TIMEFORMAT="HH:mm:ss";
     static final String SIDEBAR="sidebar-item selected";
+    
+	Logger logger = LoggerExample.getLogger();
+
     @Override
     public void doAfterCompose(Div comp) throws Exception {
         super.doAfterCompose(comp);
-        
+        logger.info("doAfterCompose Admin ");
         Boolean isAdminLoggedIn = (Boolean) Sessions.getCurrent().getAttribute("adminIslogged");
         if(isAdminLoggedIn!=null && isAdminLoggedIn) {
         loadDashboardData();
@@ -90,6 +95,7 @@ public class Dashboard extends SelectorComposer<Div> implements Serializable {
     DbConnection db = new DbConnection();
 
     private void loadDashboardData() {
+    	logger.debug("Enter in dashboardData()");
         try (Connection conn = db.getConnection();
              Statement stmt1 = conn.createStatement();
              Statement stmt2 = conn.createStatement();
@@ -232,7 +238,7 @@ public class Dashboard extends SelectorComposer<Div> implements Serializable {
 
     @Listen("onClick=#loanMenu")
     public void showLoan() {
-        showContent(dashboardContent); // Show the main dashboard view for loan stats
+        showContent(dashboardContent); 
         dashboardMenu.removeSclass("selected");
         loanMenu.setSclass(SIDEBAR);
         
@@ -273,7 +279,7 @@ public class Dashboard extends SelectorComposer<Div> implements Serializable {
 
     @Listen("onClick=#sendNotification")
     public void sendNotification() {
-        String message = "Happy Birthday!";
+        String message = "Stay Tuned!";
 
         EventQueue<Event> q = EventQueues.lookup("notification", EventQueues.APPLICATION, true);
         Event e1 = new Event("msg", null, "Notification Alert!");

@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import org.apache.logging.log4j.core.Logger;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.select.SelectorComposer;
@@ -14,6 +15,7 @@ import org.zkoss.zul.Div;
 import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Textbox;
 
+import com.sdp.apachelog4j.LoggerExample;
 import com.sdp.connection.DbConnection;
 import com.sdp.model.DebitCardPojo;
 
@@ -31,7 +33,7 @@ public class CardPinGenaration extends SelectorComposer<Div> {
 	Button pincancel;
 	
 	String cardnumber1;
-
+	Logger logger = LoggerExample.getLogger();
 	@Override
 	public void doAfterCompose(Div comp) throws Exception {
 		super.doAfterCompose(comp);
@@ -81,6 +83,7 @@ public class CardPinGenaration extends SelectorComposer<Div> {
 
 	    if (getPin() != null) {
 	        Messagebox.show("PIN Already Exists....");
+			logger.warn("Enter valide credentials");
 	        pinsubmit.setDisabled(true);
 	        return;
 	    }
@@ -97,6 +100,7 @@ public class CardPinGenaration extends SelectorComposer<Div> {
 
 	    if (!pin1Str.equals(pin2Str)) {
 	        Messagebox.show("PIN does not match...");
+	        logger.warn("Enter valide pin");
 	        return;
 	    }
 
@@ -114,6 +118,7 @@ public class CardPinGenaration extends SelectorComposer<Div> {
 	            conpin.setValue("");
 	        } else {
 	            Messagebox.show("PIN Not Set...");
+	            logger.warn("Pin not set");
 	        }
 
 	    } catch (Exception e) {
